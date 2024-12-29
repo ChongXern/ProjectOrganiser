@@ -51,6 +51,39 @@
           ]
         }
       ]
+    }, 
+    {
+      "name": "TabGuard",
+      "start_time": { "$date": "2024-10-11T23:07:16Z" },
+      "categories": [
+        "Web Development"
+      ],
+      "github_url": "https://github.com/nathan/TabGuard",
+      "github_last_commit": "6dd8c374ff48780e4dae9e51c52161120fdd690f",
+      "status": "In Progress",
+      "last_updated": { "$date": "2024-10-15T22:27:21Z" },
+      "todos": [
+        {
+          "desc": "Complete basic frontend design",
+          "start_time": { "$date": "2024-10-16T22:57:51Z" },
+          "deadline": { "$date": "2024-10-19T22:57:51Z" },
+          "is_done": false,
+          "priority": 3,
+          "created_date": { "$date": "2024-10-15T22:57:51Z" }
+        }
+      ],
+      "tutorials": [
+        {
+          "name": "How to Create a Chrome Extension with React",
+          "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
+          "is_done": false,
+          "category": "Web Development",
+          "created_date": { "$date": "2024-10-15T22:49:32Z" },
+          "lessons": [
+            
+          ]
+        }
+      ]
     }
   ]
 }
