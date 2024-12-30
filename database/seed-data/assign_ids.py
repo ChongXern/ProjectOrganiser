@@ -13,20 +13,22 @@ def generate_id():
         max_id_file.write(str(new_id))
     return curr_id
 
-if 'projects' in data and isinstance(data['projects'], list):
-    for project in data['projects']:
-        project['_id'] = generate_id()
+if isinstance(data, list):
+    for project in data:
+        if '_id' not in project or project['_id'] is None: project['_id'] = generate_id()
 
         for todo in project.get('todos', []):
-            todo['_id'] = generate_id()
+            if '_id' not in todo or todo['_id'] is None: todo['_id'] = generate_id()
 
         for tutorial in project.get('tutorials', []):
-            tutorial['_id'] = generate_id()
+            if '_id' not in tutorial or tutorial['_id'] is None: tutorial['_id'] = generate_id()
 
             for lesson in tutorial.get('lessons', []):
-                lesson['_id'] = generate_id()
+                if '_id' not in lesson or lesson['_id'] is None: lesson['_id'] = generate_id()
 
     with open('projects.json', 'w') as file:
         json.dump(data, file, indent=2)
 
     print("Finished adding unique ids")
+else:
+    print("Something wrong happened.")

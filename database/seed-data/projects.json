@@ -18,6 +18,9 @@
     "todos": [
       {
         "desc": "Complete data set creation",
+        "created_date": {
+          "$date": "2024-11-06T11:19:23Z"
+        },
         "start_time": {
           "$date": "2024-11-07T11:19:23Z"
         },
@@ -26,13 +29,13 @@
         },
         "is_done": true,
         "priority": 5,
-        "created_date": {
-          "$date": "2024-11-06T11:19:23Z"
-        },
         "_id": 2
       },
       {
         "desc": "Implement RNN Training",
+        "created_date": {
+          "$date": "2024-11-19T16:00:53Z"
+        },
         "start_time": {
           "$date": "2024-11-20T16:00:53Z"
         },
@@ -41,9 +44,6 @@
         },
         "is_done": false,
         "priority": 2,
-        "created_date": {
-          "$date": "2024-11-19T16:00:53Z"
-        },
         "_id": 3
       }
     ],
@@ -96,6 +96,9 @@
     "todos": [
       {
         "desc": "Complete basic frontend design",
+        "created_date": {
+          "$date": "2024-10-15T22:57:51Z"
+        },
         "start_time": {
           "$date": "2024-10-16T22:57:51Z"
         },
@@ -104,9 +107,6 @@
         },
         "is_done": false,
         "priority": 3,
-        "created_date": {
-          "$date": "2024-10-15T22:57:51Z"
-        },
         "_id": 8
       }
     ],
@@ -128,5 +128,62 @@
       }
     ],
     "_id": 7
+  },
+  {
+    "name": "Project Organiser",
+    "start_time": {
+      "$date": "2024-12-28T16:49:00Z"
+    },
+    "categories": [
+      "Web Development",
+      "Database Management",
+      "Data Engineering"
+    ],
+    "github_url": "https://github.com/ChongXern/ProjectOrganiser",
+    "github_last_commit": "b746ef5c57a2b9b139d7f237afe31daf576eaa23",
+    "status": "Not Started",
+    "last_updated": {
+      "$date": "2024-12-30T14:13:52Z"
+    },
+    "todos": [
+      {
+        "desc": "Set up Spring Boot",
+        "created_date": {
+          "$date": "2024-12-30T14:26:12Z"
+        },
+        "start_time": {
+          "$date": "2024-12-31T14:26:12Z"
+        },
+        "deadline": {
+          "$date": "2025-01-03T14:26:12Z"
+        },
+        "is_done": false,
+        "priority": 5,
+        "_id": 12
+      }
+    ],
+    "tutorials": [
+      {
+        "name": "Full Stack Development with Java Spring Boot, React, and MongoDB \u2013 Full Course",
+        "tutorial_url": "https://www.youtube.com/watch?v=5PdEmeopJVQ",
+        "is_done": false,
+        "category": "Web Development",
+        "created_date": {
+          "$date": "2024-12-30T14:30:02Z"
+        },
+        "lessons": [
+          {
+            "lesson_learnt": "Use separate JSON documents for each project",
+            "application": "Split JSON file into separate documents",
+            "created_date": {
+              "$date": "2024-12-30T14:31:24Z"
+            },
+            "_id": 14
+          }
+        ],
+        "_id": 13
+      }
+    ],
+    "_id": 11
   }
 ]
