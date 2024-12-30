@@ -1,134 +1,132 @@
-{
-  "projects": [
-    {
-      "name": "DS340 Audio ML Project",
-      "start_time": {
-        "$date": "2024-10-21T23:55:44Z"
-      },
-      "categories": [
-        "Machine Learning",
-        "Audio Processing",
-        "Data Engineering"
-      ],
-      "github_url": "https://github.com/nathan/DS340-Project",
-      "github_last_commit": "be33b0d49f4eb9e95f795aeceec0d59c25d25b23",
-      "status": "Completed",
-      "last_updated": {
-        "$date": "2024-12-06T23:54:48Z"
-      },
-      "todos": [
-        {
-          "desc": "Complete data set creation",
-          "start_time": {
-            "$date": "2024-11-07T11:19:23Z"
-          },
-          "deadline": {
-            "$date": "2024-11-10T11:19:23Z"
-          },
-          "is_done": true,
-          "priority": 5,
-          "created_date": {
-            "$date": "2024-11-06T11:19:23Z"
-          },
-          "_id": 2
-        },
-        {
-          "desc": "Implement RNN Training",
-          "start_time": {
-            "$date": "2024-11-20T16:00:53Z"
-          },
-          "deadline": {
-            "$date": "2024-11-23T16:00:53Z"
-          },
-          "is_done": false,
-          "priority": 2,
-          "created_date": {
-            "$date": "2024-11-19T16:00:53Z"
-          },
-          "_id": 3
-        }
-      ],
-      "tutorials": [
-        {
-          "name": "Audio classification using spectrograms",
-          "tutorial_url": "https://www.geeksforgeeks.org/audio-classification-using-spectrograms/",
-          "is_done": true,
-          "category": "Audio Processing",
-          "created_date": {
-            "$date": "2024-11-05T14:44:44Z"
-          },
-          "lessons": [
-            {
-              "lesson_learnt": "Divide spectrograms into short frames or segments",
-              "application": "Used for creating more manageable audio data",
-              "created_date": {
-                "$date": "2024-11-05T19:41:01Z"
-              },
-              "_id": 5
-            },
-            {
-              "lesson_learnt": "Librosa",
-              "application": "Use Librosa library for spectrograms",
-              "created_date": {
-                "$date": "2024-11-05T19:52:23Z"
-              },
-              "_id": 6
-            }
-          ],
-          "_id": 4
-        }
-      ],
-      "_id": 1
+[
+  {
+    "name": "DS340 Audio ML Project",
+    "start_time": {
+      "$date": "2024-10-21T23:55:44Z"
     },
-    {
-      "name": "TabGuard",
-      "start_time": {
-        "$date": "2024-10-11T23:07:16Z"
+    "categories": [
+      "Machine Learning",
+      "Audio Processing",
+      "Data Engineering"
+    ],
+    "github_url": "https://github.com/ChongXern/DS340-Project",
+    "github_last_commit": "be33b0d49f4eb9e95f795aeceec0d59c25d25b23",
+    "status": "Completed",
+    "last_updated": {
+      "$date": "2024-12-06T23:54:48Z"
+    },
+    "todos": [
+      {
+        "desc": "Complete data set creation",
+        "start_time": {
+          "$date": "2024-11-07T11:19:23Z"
+        },
+        "deadline": {
+          "$date": "2024-11-10T11:19:23Z"
+        },
+        "is_done": true,
+        "priority": 5,
+        "created_date": {
+          "$date": "2024-11-06T11:19:23Z"
+        },
+        "_id": 2
       },
-      "categories": [
-        "Web Development"
-      ],
-      "github_url": "https://github.com/nathan/TabGuard",
-      "github_last_commit": "6dd8c374ff48780e4dae9e51c52161120fdd690f",
-      "status": "In Progress",
-      "last_updated": {
-        "$date": "2024-10-15T22:27:21Z"
-      },
-      "todos": [
-        {
-          "desc": "Complete basic frontend design",
-          "start_time": {
-            "$date": "2024-10-16T22:57:51Z"
+      {
+        "desc": "Implement RNN Training",
+        "start_time": {
+          "$date": "2024-11-20T16:00:53Z"
+        },
+        "deadline": {
+          "$date": "2024-11-23T16:00:53Z"
+        },
+        "is_done": false,
+        "priority": 2,
+        "created_date": {
+          "$date": "2024-11-19T16:00:53Z"
+        },
+        "_id": 3
+      }
+    ],
+    "tutorials": [
+      {
+        "name": "Audio classification using spectrograms",
+        "tutorial_url": "https://www.geeksforgeeks.org/audio-classification-using-spectrograms/",
+        "is_done": true,
+        "category": "Audio Processing",
+        "created_date": {
+          "$date": "2024-11-05T14:44:44Z"
+        },
+        "lessons": [
+          {
+            "lesson_learnt": "Divide spectrograms into short frames or segments",
+            "application": "Used for creating more manageable audio data",
+            "created_date": {
+              "$date": "2024-11-05T19:41:01Z"
+            },
+            "_id": 5
           },
-          "deadline": {
-            "$date": "2024-10-19T22:57:51Z"
-          },
-          "is_done": false,
-          "priority": 3,
-          "created_date": {
-            "$date": "2024-10-15T22:57:51Z"
-          },
-          "_id": 8
-        }
-      ],
-      "tutorials": [
-        {
-          "name": "How to Create a Chrome Extension with React",
-          "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
-          "is_done": false,
-          "category": "Web Development",
-          "created_date": {
-            "$date": "2024-10-15T22:49:32Z"
-          },
-          "lessons": [
-            {
-              "_id": 10
-            }
-          ],
-          "_id": 9
-        }
-      ],
-      "_id": 7
-    }
-  ]
-}
+          {
+            "lesson_learnt": "Librosa",
+            "application": "Use Librosa library for spectrograms",
+            "created_date": {
+              "$date": "2024-11-05T19:52:23Z"
+            },
+            "_id": 6
+          }
+        ],
+        "_id": 4
+      }
+    ],
+    "_id": 1
+  },
+  {
+    "name": "TabGuard",
+    "start_time": {
+      "$date": "2024-10-11T23:07:16Z"
+    },
+    "categories": [
+      "Web Development"
+    ],
+    "github_url": "https://github.com/ChongXern/TabGuard",
+    "github_last_commit": "6dd8c374ff48780e4dae9e51c52161120fdd690f",
+    "status": "In Progress",
+    "last_updated": {
+      "$date": "2024-10-15T22:27:21Z"
+    },
+    "todos": [
+      {
+        "desc": "Complete basic frontend design",
+        "start_time": {
+          "$date": "2024-10-16T22:57:51Z"
+        },
+        "deadline": {
+          "$date": "2024-10-19T22:57:51Z"
+        },
+        "is_done": false,
+        "priority": 3,
+        "created_date": {
+          "$date": "2024-10-15T22:57:51Z"
+        },
+        "_id": 8
+      }
+    ],
+    "tutorials": [
+      {
+        "name": "How to Create a Chrome Extension with React",
+        "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
+        "is_done": false,
+        "category": "Web Development",
+        "created_date": {
+          "$date": "2024-10-15T22:49:32Z"
+        },
+        "lessons": [
+          {
+            "_id": 10
+          }
+        ],
+        "_id": 9
+      }
+    ],
+    "_id": 7
+  }
+]
