@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ProjectOrganiser.iml" filepath="$PROJECT_DIR$/.idea/ProjectOrganiser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/project_organiser.iml" filepath="$PROJECT_DIR$/.idea/modules/project_organiser.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/project_organiser.main.iml" filepath="$PROJECT_DIR$/.idea/modules/project_organiser.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/project_organiser.test.iml" filepath="$PROJECT_DIR$/.idea/modules/project_organiser.test.iml" />
     </modules>
   </component>
 </project>
