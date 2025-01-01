@@ -15,68 +15,8 @@
     "last_updated": {
       "$date": "2024-12-06T23:54:48Z"
     },
-    "todos": [
-      {
-        "desc": "Complete data set creation",
-        "created_date": {
-          "$date": "2024-11-06T11:19:23Z"
-        },
-        "start_time": {
-          "$date": "2024-11-07T11:19:23Z"
-        },
-        "deadline": {
-          "$date": "2024-11-10T11:19:23Z"
-        },
-        "is_done": true,
-        "priority": 5,
-        "_id": 2
-      },
-      {
-        "desc": "Implement RNN Training",
-        "created_date": {
-          "$date": "2024-11-19T16:00:53Z"
-        },
-        "start_time": {
-          "$date": "2024-11-20T16:00:53Z"
-        },
-        "deadline": {
-          "$date": "2024-11-23T16:00:53Z"
-        },
-        "is_done": false,
-        "priority": 2,
-        "_id": 3
-      }
-    ],
-    "tutorials": [
-      {
-        "name": "Audio classification using spectrograms",
-        "tutorial_url": "https://www.geeksforgeeks.org/audio-classification-using-spectrograms/",
-        "is_done": true,
-        "category": "Audio Processing",
-        "created_date": {
-          "$date": "2024-11-05T14:44:44Z"
-        },
-        "lessons": [
-          {
-            "lesson_learnt": "Divide spectrograms into short frames or segments",
-            "application": "Used for creating more manageable audio data",
-            "created_date": {
-              "$date": "2024-11-05T19:41:01Z"
-            },
-            "_id": 5
-          },
-          {
-            "lesson_learnt": "Librosa",
-            "application": "Use Librosa library for spectrograms",
-            "created_date": {
-              "$date": "2024-11-05T19:52:23Z"
-            },
-            "_id": 6
-          }
-        ],
-        "_id": 4
-      }
-    ],
+    "todos": [2, 3],
+    "tutorials": [4],
     "_id": 1
   },
   {
@@ -93,40 +33,8 @@
     "last_updated": {
       "$date": "2024-10-15T22:27:21Z"
     },
-    "todos": [
-      {
-        "desc": "Complete basic frontend design",
-        "created_date": {
-          "$date": "2024-10-15T22:57:51Z"
-        },
-        "start_time": {
-          "$date": "2024-10-16T22:57:51Z"
-        },
-        "deadline": {
-          "$date": "2024-10-19T22:57:51Z"
-        },
-        "is_done": false,
-        "priority": 3,
-        "_id": 8
-      }
-    ],
-    "tutorials": [
-      {
-        "name": "How to Create a Chrome Extension with React",
-        "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
-        "is_done": false,
-        "category": "Web Development",
-        "created_date": {
-          "$date": "2024-10-15T22:49:32Z"
-        },
-        "lessons": [
-          {
-            "_id": 10
-          }
-        ],
-        "_id": 9
-      }
-    ],
+    "todos": [8],
+    "tutorials": [9],
     "_id": 7
   },
   {
@@ -145,45 +53,8 @@
     "last_updated": {
       "$date": "2024-12-30T14:13:52Z"
     },
-    "todos": [
-      {
-        "desc": "Set up Spring Boot",
-        "created_date": {
-          "$date": "2024-12-30T14:26:12Z"
-        },
-        "start_time": {
-          "$date": "2024-12-31T14:26:12Z"
-        },
-        "deadline": {
-          "$date": "2025-01-03T14:26:12Z"
-        },
-        "is_done": false,
-        "priority": 5,
-        "_id": 12
-      }
-    ],
-    "tutorials": [
-      {
-        "name": "Full Stack Development with Java Spring Boot, React, and MongoDB \u2013 Full Course",
-        "tutorial_url": "https://www.youtube.com/watch?v=5PdEmeopJVQ",
-        "is_done": false,
-        "category": "Web Development",
-        "created_date": {
-          "$date": "2024-12-30T14:30:02Z"
-        },
-        "lessons": [
-          {
-            "lesson_learnt": "Use separate JSON documents for each project",
-            "application": "Split JSON file into separate documents",
-            "created_date": {
-              "$date": "2024-12-30T14:31:24Z"
-            },
-            "_id": 14
-          }
-        ],
-        "_id": 13
-      }
-    ],
+    "todos": [12],
+    "tutorials": [13],
     "_id": 11
   }
 ]

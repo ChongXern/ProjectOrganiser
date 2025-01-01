@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Audio classification using spectrograms",
+        "tutorial_url": "https://www.geeksforgeeks.org/audio-classification-using-spectrograms/",
+        "is_done": true,
+        "category": "Audio Processing",
+        "created_date": {
+            "$date": "2024-11-05T14:44:44Z"
+        },
+        "lessons": [5, 6],
+        "_id": 4
+    },
+    {
+        "name": "How to Create a Chrome Extension with React",
+        "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
+        "is_done": false,
+        "category": "Web Development",
+        "created_date": {
+            "$date": "2024-10-15T22:49:32Z"
+        },
+        "lessons": [10],
+        "_id": 9
+    },
+    {
+        "name": "Full Stack Development with Java Spring Boot, React, and MongoDB \u2013 Full Course",
+        "tutorial_url": "https://www.youtube.com/watch?v=5PdEmeopJVQ",
+        "is_done": false,
+        "category": "Web Development",
+        "created_date": {
+            "$date": "2024-12-30T14:30:02Z"
+        },
+        "lessons": [14],
+        "_id": 13
+    }
+]
