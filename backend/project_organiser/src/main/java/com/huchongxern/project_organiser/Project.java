@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor //creates constructor with no args
 public class Project {
     @Id
-    private ObjectId id;
+    private Integer _id;
     private String name;
     private Date start_time;
     private List<String> categories;
@@ -27,11 +28,13 @@ public class Project {
     private String github_last_commit;
     private String status; // make into enum?
     private Date last_updated;
+    @DocumentReference
     private List<Todo> todos;
+    @DocumentReference
     private List<Tutorial> tutorials;
 
-    public Project(ObjectId id, String name, String github_url, String github_last_commit, Date last_updated, List<Todo> todos, List<Tutorial> tutorials){
-        this.id = id;
+    public Project(Integer _id, String name, String github_url, String github_last_commit){
+        this._id = _id;
         this.name = name;
         this.github_url = github_url;
         this.github_last_commit = github_last_commit;

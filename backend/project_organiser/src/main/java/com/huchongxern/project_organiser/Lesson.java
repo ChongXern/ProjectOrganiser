@@ -17,14 +17,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class Lesson {
     @Id
-    private ObjectId id;
+    private Integer _id;
     private String lesson_learnt;
     private String application;
     private Date created_date;
 
     // constructor for automatically creating template Lesson
-    public Lesson(ObjectId id) {
-        this.id = id;
+    public Lesson(Integer _id) {
+        this._id = _id;
         this.lesson_learnt = "";
         this.application = "";
         LocalDate today = LocalDate.now();
