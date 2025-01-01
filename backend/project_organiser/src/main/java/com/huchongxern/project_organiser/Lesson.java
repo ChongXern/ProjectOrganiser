@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Document(collection = "projects")
+@Document(collection = "lessons")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

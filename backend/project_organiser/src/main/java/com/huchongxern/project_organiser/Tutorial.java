@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "projects")
+@Document(collection = "tutorials")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
