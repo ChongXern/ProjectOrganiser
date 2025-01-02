@@ -17,13 +17,6 @@ public class ProjectService {
     @Autowired //lets framework know to instantiate repo class
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private TutorialRepository tutorialRepository;
-
-    @Autowired
-    private LessonRepository lessonRepository;
-
-
     public List<Project> allProjects() {
         return projectRepository.findAll();
     }
@@ -36,24 +29,5 @@ public class ProjectService {
 
     public Optional<Project> getProjectByName(String name) {
         return projectRepository.findProjectByName(name);
-    }
-
-    public List<Tutorial> getTutorialsForProject(Integer id) {
-        Project project = getProjectById(id);
-        //List<Tutorial> tutorials = tutorialRepository.findAllById(project.getTutorials());
-        return project.getTutorials();
-    }
-
-    public List<Lesson> getLessonsForTutorial(Integer projectId, Integer tutorialId) {
-        Optional<Tutorial> tutorial = tutorialRepository.findById(tutorialId);
-        if (tutorial.isPresent()){
-            return tutorial.get().getLessons();
-        } else {
-            throw new RuntimeException("Tutorial Not Found");
-        }
-    }
-
-    public Optional<Project> getProjectByGithubUrlName(String githubUrl) {
-        return projectRepository.findProjectByGithubUrl(githubUrl);
     }
 }

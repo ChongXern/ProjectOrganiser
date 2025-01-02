@@ -36,25 +36,6 @@ public class Project {
     @DocumentReference
     private List<Tutorial> tutorials;
 
-    /*@PersistenceCreator
-    public Project(Integer _id, String name, Date start_time, List<String> categories, String githubUrl, String github_last_commit, String status, Date last_updated, List<Todo> todos, List<Tutorial> tutorials) {
-        this._id = _id;
-        this.name = name;
-        this.start_time = start_time;
-        this.categories = categories;
-        this.githubUrl = githubUrl;
-        this.github_last_commit = github_last_commit;
-        this.status = status;
-        this.last_updated = last_updated;
-        this.todos = todos;
-        this.tutorials = tutorials;
-    }
-
-    public String parseRepoName(String githubUrl) {
-        String[] splitItems = githubUrl.split("/");
-        return splitItems[splitItems.length - 1];
-    }*/
-
     // no args constructor considering string status
     public Project(){
         this.categories = new ArrayList<>();
