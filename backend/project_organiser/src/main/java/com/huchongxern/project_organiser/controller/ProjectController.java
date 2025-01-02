@@ -1,5 +1,9 @@
-package com.huchongxern.project_organiser;
+package com.huchongxern.project_organiser.controller;
 
+import com.huchongxern.project_organiser.model.Lesson;
+import com.huchongxern.project_organiser.model.Project;
+import com.huchongxern.project_organiser.service.ProjectService;
+import com.huchongxern.project_organiser.model.Tutorial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +25,17 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project getProject(@PathVariable Integer id){
-        return projectService.getProjectById(id);
+    public ResponseEntity<Project> getProject(@PathVariable Integer id){
+        return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/tutorials")
-    public List<Tutorial> getTutorials(@PathVariable Integer id) {
-        return projectService.getTutorialsForProject(id);
+    public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable Integer id) {
+        return new ResponseEntity<>(projectService.getTutorialsForProject(id), HttpStatus.OK);
     }
 
     @GetMapping("/{projectId}/tutorials/{tutorialId}/lessons")
-    public List<Lesson> getLessons(@PathVariable Integer projectId, @PathVariable Integer tutorialId) {
-        return projectService.getLessonsForTutorial(projectId, tutorialId);
+    public ResponseEntity<List<Lesson>> getLessons(@PathVariable Integer projectId, @PathVariable Integer tutorialId) {
+        return new ResponseEntity<>(projectService.getLessonsForTutorial(projectId, tutorialId), HttpStatus.OK);
     }
 }

@@ -1,4 +1,4 @@
-package com.huchongxern.project_organiser;
+package com.huchongxern.project_organiser.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

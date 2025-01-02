@@ -1,4 +1,4 @@
-package com.huchongxern.project_organiser;
+package com.huchongxern.project_organiser.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

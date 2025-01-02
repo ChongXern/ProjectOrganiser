@@ -1,9 +1,14 @@
-package com.huchongxern.project_organiser;
+package com.huchongxern.project_organiser.service;
 
+import com.huchongxern.project_organiser.model.Lesson;
+import com.huchongxern.project_organiser.model.Project;
+import com.huchongxern.project_organiser.model.Tutorial;
+import com.huchongxern.project_organiser.repository.LessonRepository;
+import com.huchongxern.project_organiser.repository.ProjectRepository;
+import com.huchongxern.project_organiser.repository.TutorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
