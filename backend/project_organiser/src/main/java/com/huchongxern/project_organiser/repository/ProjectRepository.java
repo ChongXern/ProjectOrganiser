@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends MongoRepository<Project, Integer> {
-    List<Optional<Project>> findProjectsByStatus(String status);
+    //List<Optional<Project>> findProjectsByStatus(String status);
     Optional<Project> findProjectByName(String name);
 
-    Optional<Project> findProjectByRepoName(String repoName);
+    Optional<Project> findProjectByGithubUrl(String github_url);
 }

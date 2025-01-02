@@ -25,14 +25,15 @@ public class ProjectController {
         return new ResponseEntity<List<Project>>(projectService.allProjects(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Project> getProject(@PathVariable Integer id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable Integer id){
         return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}")
-    public ResponseEntity<Optional<Project>> getProject(@PathVariable String repoName) {
-        return new ResponseEntity<>(projectService.getProjectByRepoName(repoName), HttpStatus.OK);
+    public ResponseEntity<Optional<Project>> getProjectByRepoName(@PathVariable String repoName) {
+        String fullGithubUrl = "https://github.com/ChongXern/" + repoName;
+        return new ResponseEntity<>(projectService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/tutorials")

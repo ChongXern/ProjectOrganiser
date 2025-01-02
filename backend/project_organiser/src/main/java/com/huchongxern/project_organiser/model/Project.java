@@ -8,6 +8,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -25,9 +26,9 @@ public class Project {
     private String name;
     private Date start_time;
     private List<String> categories;
-    private String github_url;
+    @Field("github_url")
+    private String githubUrl;
     private String github_last_commit;
-    //private String status; // make into enum?
     private String status;
     private Date last_updated;
     @DocumentReference
@@ -35,12 +36,24 @@ public class Project {
     @DocumentReference
     private List<Tutorial> tutorials;
 
-    private String repoName;
-
-    public String parseRepoName(String github_url) {
-        String[] splitItems = github_url.split("/");
-        return splitItems[splitItems.length - 1];
+    /*@PersistenceCreator
+    public Project(Integer _id, String name, Date start_time, List<String> categories, String githubUrl, String github_last_commit, String status, Date last_updated, List<Todo> todos, List<Tutorial> tutorials) {
+        this._id = _id;
+        this.name = name;
+        this.start_time = start_time;
+        this.categories = categories;
+        this.githubUrl = githubUrl;
+        this.github_last_commit = github_last_commit;
+        this.status = status;
+        this.last_updated = last_updated;
+        this.todos = todos;
+        this.tutorials = tutorials;
     }
+
+    public String parseRepoName(String githubUrl) {
+        String[] splitItems = githubUrl.split("/");
+        return splitItems[splitItems.length - 1];
+    }*/
 
     // no args constructor considering string status
     public Project(){
@@ -53,10 +66,10 @@ public class Project {
         this.status = "NOT_STARTED";
     }
 
-    public Project(Integer _id, String name, String github_url, String github_last_commit) {
+    public Project(Integer _id, String name, String githubUrl, String github_last_commit) {
         this._id = _id;
         this.name = name;
-        this.github_url = github_url;
+        this.githubUrl = githubUrl;
         this.github_last_commit = github_last_commit;
 
         LocalDate today = LocalDate.now();
@@ -66,7 +79,5 @@ public class Project {
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
         this.categories = new ArrayList<>();
-
-        this.repoName = parseRepoName(github_url);
     }
 }

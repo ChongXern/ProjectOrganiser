@@ -38,10 +38,6 @@ public class ProjectService {
         return projectRepository.findProjectByName(name);
     }
 
-    public Optional<Project> getProjectByRepoName(String repoName) {
-        return projectRepository.findProjectByRepoName(repoName);
-    }
-
     public List<Tutorial> getTutorialsForProject(Integer id) {
         Project project = getProjectById(id);
         //List<Tutorial> tutorials = tutorialRepository.findAllById(project.getTutorials());
@@ -55,5 +51,9 @@ public class ProjectService {
         } else {
             throw new RuntimeException("Tutorial Not Found");
         }
+    }
+
+    public Optional<Project> getProjectByGithubUrlName(String githubUrl) {
+        return projectRepository.findProjectByGithubUrl(githubUrl);
     }
 }
