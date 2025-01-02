@@ -34,6 +34,14 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
+    public Optional<Project> getProjectByName(String name) {
+        return projectRepository.findProjectByName(name);
+    }
+
+    public Optional<Project> getProjectByRepoName(String repoName) {
+        return projectRepository.findProjectByRepoName(repoName);
+    }
+
     public List<Tutorial> getTutorialsForProject(Integer id) {
         Project project = getProjectById(id);
         //List<Tutorial> tutorials = tutorialRepository.findAllById(project.getTutorials());

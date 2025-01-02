@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
@@ -33,6 +35,13 @@ public class Project {
     @DocumentReference
     private List<Tutorial> tutorials;
 
+    private String repoName;
+
+    public String parseRepoName(String github_url) {
+        String[] splitItems = github_url.split("/");
+        return splitItems[splitItems.length - 1];
+    }
+
     // no args constructor considering string status
     public Project(){
         this.categories = new ArrayList<>();
@@ -44,6 +53,7 @@ public class Project {
         this.status = ProjectStatus.NOT_STARTED;
     }
 
+    /*@PersistenceCreator
     // all args constructor considering string status
     public Project(Integer _id, String name, Date start_time, List<String> categories, String github_url, String github_last_commit, String status, Date last_updated, List<Todo> todos, List<Tutorial> tutorials) {
         this._id = _id;
@@ -52,13 +62,30 @@ public class Project {
         this.categories = categories;
         this.github_url = github_url;
         this.github_last_commit = github_last_commit;
-        this.status = ProjectStatus.valueOf(status);
+
+        // Safely handle invalid statuses
+        if (status != null) {
+            System.out.println("Status IS NOT NULL AMAMAMA");
+            try {
+                this.status = ProjectStatus.valueOf(status);
+            } catch (IllegalArgumentException e) {
+                this.status = ProjectStatus.NOT_STARTED;  // Default if status is invalid
+                System.err.println("Invalid status value: " + status);  // Log the invalid value
+            }
+        } else {
+            System.out.println("Status IS NOT NULL AMAMAMA");
+            this.status = ProjectStatus.NOT_STARTED;  // Default to 'NOT_STARTED' if status is null
+        }
+
         this.last_updated = last_updated;
         this.todos = todos;
         this.tutorials = tutorials;
+        this.repoName = parseRepoName(github_url);
     }
+    
+     */
 
-    public Project(Integer _id, String name, String github_url, String github_last_commit){
+    public Project(Integer _id, String name, String github_url, String github_last_commit) {
         this._id = _id;
         this.name = name;
         this.github_url = github_url;
@@ -71,5 +98,7 @@ public class Project {
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
         this.categories = new ArrayList<>();
+
+        this.repoName = parseRepoName(github_url);
     }
 }

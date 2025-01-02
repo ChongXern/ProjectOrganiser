@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -27,6 +28,11 @@ public class ProjectController {
     @GetMapping("/{id}")
     public ResponseEntity<Project> getProject(@PathVariable Integer id){
         return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/{repoName}")
+    public ResponseEntity<Optional<Project>> getProject(@PathVariable String repoName) {
+        return new ResponseEntity<>(projectService.getProjectByRepoName(repoName), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/tutorials")
