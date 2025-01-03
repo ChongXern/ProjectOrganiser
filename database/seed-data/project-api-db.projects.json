@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "67773e6396868cad0f5ae2ef"
+  },
+  "name": "DS340 Audio ML Project",
+  "start_time": {
+    "$date": "2024-10-21T23:55:44.000Z"
+  },
+  "categories": [
+    "Machine Learning",
+    "Audio Processing",
+    "Data Engineering"
+  ],
+  "github_url": "https://github.com/ChongXern/DS340-Project",
+  "github_last_commit": "be33b0d49f4eb9e95f795aeceec0d59c25d25b23",
+  "status": "COMPLETED",
+  "last_updated": {
+    "$date": "2024-12-06T23:54:48.000Z"
+  },
+  "todos": [
+    {
+      "$oid": "6777368996868cad0f5ae2da"
+    },
+    {
+      "$oid": "6777368996868cad0f5ae2db"
+    }
+  ],
+  "tutorials": [
+    {
+      "$oid": "67773df096868cad0f5ae2eb"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67773e6396868cad0f5ae2f0"
+  },
+  "name": "TabGuard",
+  "start_time": {
+    "$date": "2024-10-11T23:07:16.000Z"
+  },
+  "categories": [
+    "Web Development"
+  ],
+  "github_url": "https://github.com/ChongXern/TabGuard",
+  "github_last_commit": "6dd8c374ff48780e4dae9e51c52161120fdd690f",
+  "status": "IN_PROGRESS",
+  "last_updated": {
+    "$date": "2024-10-15T22:27:21.000Z"
+  },
+  "todos": [
+    {
+      "$oid": "6777368996868cad0f5ae2dc"
+    }
+  ],
+  "tutorials": [
+    {
+      "$oid": "67773df096868cad0f5ae2ec"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67773e6396868cad0f5ae2f1"
+  },
+  "name": "Project Organiser",
+  "start_time": {
+    "$date": "2024-12-28T16:49:00.000Z"
+  },
+  "categories": [
+    "Web Development",
+    "Database Management",
+    "Data Engineering"
+  ],
+  "github_url": "https://github.com/ChongXern/ProjectOrganiser",
+  "github_last_commit": "b746ef5c57a2b9b139d7f237afe31daf576eaa23",
+  "status": "NOT_STARTED",
+  "last_updated": {
+    "$date": "2024-12-30T14:13:52.000Z"
+  },
+  "todos": [
+    {
+      "$oid": "6777368996868cad0f5ae2dd"
+    }
+  ],
+  "tutorials": [
+    {
+      "$oid": "67773df096868cad0f5ae2ed"
+    }
+  ]
+}]

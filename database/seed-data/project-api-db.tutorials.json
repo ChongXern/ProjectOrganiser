@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "67773df096868cad0f5ae2eb"
+  },
+  "name": "Audio classification using spectrograms",
+  "tutorial_url": "https://www.geeksforgeeks.org/audio-classification-using-spectrograms/",
+  "is_done": true,
+  "category": "Audio Processing",
+  "created_date": {
+    "$date": "2024-11-05T14:44:44.000Z"
+  },
+  "lessons": [
+    {
+      "$oid": "67773cb896868cad0f5ae2e6"
+    },
+    {
+      "$oid": "67773cb896868cad0f5ae2e7"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67773df096868cad0f5ae2ec"
+  },
+  "name": "How to Create a Chrome Extension with React",
+  "tutorial_url": "https://hackernoon.com/how-to-create-a-chrome-extension-with-react",
+  "is_done": false,
+  "category": "Web Development",
+  "created_date": {
+    "$date": "2024-10-15T22:49:32.000Z"
+  },
+  "lessons": [
+    {
+      "$oid": "67773cb896868cad0f5ae2e8"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67773df096868cad0f5ae2ed"
+  },
+  "name": "Full Stack Development with Java Spring Boot, React, and MongoDB – Full Course",
+  "tutorial_url": "https://www.youtube.com/watch?v=5PdEmeopJVQ",
+  "is_done": false,
+  "category": "Web Development",
+  "created_date": {
+    "$date": "2024-12-30T14:30:02.000Z"
+  },
+  "lessons": [
+    {
+      "$oid": "67773cb896868cad0f5ae2e9"
+    }
+  ]
+}]

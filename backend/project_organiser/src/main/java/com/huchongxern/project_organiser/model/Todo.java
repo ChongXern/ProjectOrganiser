@@ -4,6 +4,7 @@ import com.huchongxern.project_organiser.utils.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,12 +14,12 @@ import java.time.LocalDate;
 
 @Document(collection = "todos")
 @Data
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class Todo {
     @Id
-    private Integer _id;
-    private String text;
+    private ObjectId _id;
+    private String desc;
     private Date created_date;
     private Date start_time;
     private Date deadline;
@@ -33,9 +34,9 @@ public class Todo {
     }
 
     // constructor for setting dates based on today, and sets is_done to false
-    public Todo(Integer _id, String text, int priority) {
+    public Todo(ObjectId _id, String desc, int priority) {
         this._id = _id;
-        this.text = text;
+        this.desc = desc;
         this.priority = priority;
 
         setDefaultDates();
@@ -43,19 +44,19 @@ public class Todo {
     }
 
     // even more watered down constructor for template item
-    public Todo(Integer _id){
+    public Todo(ObjectId _id){
         this._id = _id;
         setDefaultDates();
         this.is_done = false;
-        this.text = "";
+        this.desc = "";
         this.priority = 1;
     }
 
-    public Todo() {
+    /*public Todo() {
         this._id = Util.generateId();
         setDefaultDates();
         this.is_done = false;
         this.text = "";
         this.priority = 1;
-    }
+    }*/
 }

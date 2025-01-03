@@ -3,6 +3,8 @@ package com.huchongxern.project_organiser.model;
 import com.huchongxern.project_organiser.utils.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
@@ -17,10 +19,10 @@ import java.util.List;
 @Document(collection = "projects")
 @Data //Takes care of getters, setters and to string
 @AllArgsConstructor //uses all args to create constructor
-//@NoArgsConstructor //creates constructor with no args
+@NoArgsConstructor //creates constructor with no args
 public class Project {
     @Id
-    private Integer _id;
+    private ObjectId _id;
     private String name;
     private Date start_time;
     private List<String> categories;
@@ -35,7 +37,7 @@ public class Project {
     private List<Tutorial> tutorials;
 
     // no args constructor considering string status
-    public Project(){
+    /*public Project(){
         this._id = Util.generateId();
         this.categories = new ArrayList<>();
         this.todos = new ArrayList<>();
@@ -43,9 +45,9 @@ public class Project {
         this.start_time = Util.getCurrDate();
         this.last_updated = this.start_time;
         this.status = "NOT_STARTED";
-    }
+    }*/
 
-    public Project(Integer _id, String name, String githubUrl, String github_last_commit) {
+    public Project(ObjectId _id, String name, String githubUrl, String github_last_commit) {
         this._id = _id;
         this.name = name;
         this.githubUrl = githubUrl;

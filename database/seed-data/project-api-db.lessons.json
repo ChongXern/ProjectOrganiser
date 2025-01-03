@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "67773cb896868cad0f5ae2e6"
+  },
+  "lesson_learnt": "Divide spectrograms into short frames or segments",
+  "application": "Used for creating more manageable audio data",
+  "created_date": {
+    "$date": "2024-11-05T19:41:01.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67773cb896868cad0f5ae2e7"
+  },
+  "lesson_learnt": "Librosa",
+  "application": "Use Librosa library for spectrograms",
+  "created_date": {
+    "$date": "2024-11-05T19:52:23.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67773cb896868cad0f5ae2e8"
+  },
+  "lesson_learnt": "manifest.json",
+  "application": "Add manifest.json to TabGuard",
+  "created_date": {
+    "$date": "2024-10-15T22:55:15.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67773cb896868cad0f5ae2e9"
+  },
+  "lesson_learnt": "Use separate JSON documents for each project",
+  "application": "Split JSON file into separate documents",
+  "created_date": {
+    "$date": "2024-12-30T14:31:24.000Z"
+  }
+}]

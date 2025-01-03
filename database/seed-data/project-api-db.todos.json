@@ -1,0 +1,68 @@
+[{
+  "_id": {
+    "$oid": "6777368996868cad0f5ae2da"
+  },
+  "desc": "Complete data set creation",
+  "created_date": {
+    "$date": "2024-11-06T11:19:23.000Z"
+  },
+  "start_time": {
+    "$date": "2024-11-07T11:19:23.000Z"
+  },
+  "deadline": {
+    "$date": "2024-11-10T11:19:23.000Z"
+  },
+  "is_done": true,
+  "priority": 5
+},
+{
+  "_id": {
+    "$oid": "6777368996868cad0f5ae2db"
+  },
+  "desc": "Implement RNN Training",
+  "created_date": {
+    "$date": "2024-11-19T16:00:53.000Z"
+  },
+  "start_time": {
+    "$date": "2024-11-20T16:00:53.000Z"
+  },
+  "deadline": {
+    "$date": "2024-11-23T16:00:53.000Z"
+  },
+  "is_done": false,
+  "priority": 2
+},
+{
+  "_id": {
+    "$oid": "6777368996868cad0f5ae2dc"
+  },
+  "desc": "Complete basic frontend design",
+  "created_date": {
+    "$date": "2024-10-15T22:57:51.000Z"
+  },
+  "start_time": {
+    "$date": "2024-10-16T22:57:51.000Z"
+  },
+  "deadline": {
+    "$date": "2024-10-19T22:57:51.000Z"
+  },
+  "is_done": false,
+  "priority": 3
+},
+{
+  "_id": {
+    "$oid": "6777368996868cad0f5ae2dd"
+  },
+  "desc": "Set up Spring Boot",
+  "created_date": {
+    "$date": "2024-12-30T14:26:12.000Z"
+  },
+  "start_time": {
+    "$date": "2024-12-31T14:26:12.000Z"
+  },
+  "deadline": {
+    "$date": "2025-01-03T14:26:12.000Z"
+  },
+  "is_done": false,
+  "priority": 5
+}]
