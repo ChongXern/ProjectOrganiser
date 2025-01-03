@@ -5,6 +5,7 @@ import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.service.ProjectService;
 import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.service.TutorialService;
+import com.huchongxern.project_organiser.utils.Util;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,7 @@ public class ProjectController {
     @GetMapping("/{repoName}")
     public ResponseEntity<Optional<Project>> getProjectByRepoName(@PathVariable String repoName) {
         String fullGithubUrl = findGithubUrlFromRepoName(repoName);
+        Util.terminal("ls");
         //String fullGithubUrl2 = "https://github.com/ChongXern/" + repoName; // adjust to consider other usernames
         return new ResponseEntity<>(tutorialService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
     }

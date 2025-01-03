@@ -27,7 +27,6 @@ public class Lesson {
         this._id = _id;
         this.lesson_learnt = "";
         this.application = "";
-        LocalDate today = LocalDate.now();
-        this.created_date = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.created_date = Util.getCurrDate();
     }
 }

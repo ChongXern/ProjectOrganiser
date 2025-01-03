@@ -1,11 +1,9 @@
 package com.huchongxern.project_organiser.model;
 
+import com.huchongxern.project_organiser.utils.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -38,11 +36,11 @@ public class Project {
 
     // no args constructor considering string status
     public Project(){
+        this._id = Util.generateId();
         this.categories = new ArrayList<>();
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
-        LocalDate today = LocalDate.now();
-        this.start_time = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.start_time = Util.getCurrDate();
         this.last_updated = this.start_time;
         this.status = "NOT_STARTED";
     }

@@ -1,5 +1,6 @@
 package com.huchongxern.project_organiser.model;
 
+import com.huchongxern.project_organiser.utils.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 
 @Document(collection = "todos")
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 public class Todo {
     @Id
@@ -45,7 +46,14 @@ public class Todo {
     public Todo(Integer _id){
         this._id = _id;
         setDefaultDates();
+        this.is_done = false;
+        this.text = "";
+        this.priority = 1;
+    }
 
+    public Todo() {
+        this._id = Util.generateId();
+        setDefaultDates();
         this.is_done = false;
         this.text = "";
         this.priority = 1;
