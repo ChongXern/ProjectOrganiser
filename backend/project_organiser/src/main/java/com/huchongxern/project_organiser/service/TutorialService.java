@@ -5,6 +5,7 @@ import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.repository.ProjectRepository;
 import com.huchongxern.project_organiser.repository.TutorialRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class TutorialService {
         throw new RuntimeException("Project not found for given Github URL");
     }
 
-    public Tutorial getTutorialForProjectFromTutorialId(String githubUrl, Integer tutorialId){
+    public Tutorial getTutorialForProjectFromTutorialId(String githubUrl, ObjectId tutorialId){
         List<Tutorial> tutorialList = getTutorialsForProject(githubUrl);
         for (Tutorial tutorial : tutorialList) {
             if (tutorial.get_id().equals(tutorialId)) {
@@ -43,7 +44,7 @@ public class TutorialService {
         throw new RuntimeException("Tutorial not found for tutorial id: " + tutorialId);
     }
 
-    public List<Lesson> getLessonsForTutorial(String githubUrl, Integer tutorialId) {
+    public List<Lesson> getLessonsForTutorial(String githubUrl, ObjectId tutorialId) {
         List<Tutorial> tutorialList = getTutorialsForProject(githubUrl);
         Optional<Tutorial> tutorial = tutorialRepository.findById(tutorialId);
         if (tutorial.isPresent()){

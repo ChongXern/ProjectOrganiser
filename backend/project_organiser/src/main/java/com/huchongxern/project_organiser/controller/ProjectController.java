@@ -7,6 +7,7 @@ import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.service.TutorialService;
 import com.huchongxern.project_organiser.utils.Util;
 import org.apache.coyote.Response;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,7 @@ public class ProjectController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable Integer id){
+    public ResponseEntity<Project> getProjectById(@PathVariable ObjectId id){
         return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
     }
 
@@ -72,14 +73,14 @@ public class ProjectController {
     }
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}")
-    public ResponseEntity<Tutorial> getTutorial(@PathVariable String repoName, @PathVariable Integer tutorialId) {
+    public ResponseEntity<Tutorial> getTutorial(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
         String githubUrl = findGithubUrlFromRepoName(repoName);
         return new ResponseEntity<>(tutorialService.getTutorialForProjectFromTutorialId(githubUrl, tutorialId),
                 HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}/lessons")
-    public ResponseEntity<List<Lesson>> getLessons(@PathVariable String repoName, @PathVariable Integer tutorialId) {
+    public ResponseEntity<List<Lesson>> getLessons(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
         String githubUrl = findGithubUrlFromRepoName(repoName);
         return new ResponseEntity<>(tutorialService.getLessonsForTutorial(githubUrl, tutorialId), HttpStatus.OK);
     }
