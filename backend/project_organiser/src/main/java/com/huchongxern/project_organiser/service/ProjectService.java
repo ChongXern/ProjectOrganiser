@@ -9,6 +9,7 @@ import com.huchongxern.project_organiser.repository.TutorialRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,11 @@ public class ProjectService {
 
     public Optional<Project> getProjectByName(String name) {
         return projectRepository.findProjectByName(name);
+    }
+
+    public List<Project> getProjectsByStatus(String status) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("status").is(status));
+        return mongoTemplate.find(query, Project.class);
     }
 }
