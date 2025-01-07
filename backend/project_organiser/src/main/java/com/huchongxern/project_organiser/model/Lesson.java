@@ -28,4 +28,15 @@ public class Lesson {
         this.application = "";
         this.created_date = Util.getCurrDate();
     }
+
+    public Lesson(String lesson_learnt, String application) {
+        this._id = new ObjectId();
+        this.lesson_learnt = lesson_learnt;
+        this.application = application;
+        this.created_date = Util.getCurrDate();
+    }
+
+    public void set_created_date() {
+        created_date = Util.getCurrDate();
+    }
 }
