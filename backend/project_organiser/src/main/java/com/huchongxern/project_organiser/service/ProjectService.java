@@ -42,4 +42,33 @@ public class ProjectService {
         query.addCriteria(Criteria.where("status").is(status));
         return mongoTemplate.find(query, Project.class);
     }
+
+    public Project createProject(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public Project updateProject(ObjectId id, Project newProject) {
+        Project existingProject = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + id));
+
+        // set new attributes one by one
+        existingProject.setName(newProject.getName());
+        existingProject.setStart_time(newProject.getStart_time());
+        existingProject.setCategories(newProject.getCategories());
+        existingProject.setGithubUrl(newProject.getGithubUrl());
+        existingProject.setGithub_last_commit(newProject.getGithub_last_commit());
+        existingProject.setStatus(newProject.getStatus());
+        existingProject.setLast_updated(newProject.getLast_updated());
+        existingProject.setTodos(newProject.getTodos());
+        existingProject.setTutorials(newProject.getTutorials());
+
+        return projectRepository.save(existingProject);
+    }
+
+    public void deleteProject(ObjectId id) {
+        if (!projectRepository.existsById(id)) {
+            throw new RuntimeException("Project not found with ID: " + id)
+        }
+        projectRepository.deleteById(id);
+    }
 }

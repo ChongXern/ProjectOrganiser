@@ -91,4 +91,10 @@ public class ProjectController {
         String githubUrl = findGithubUrlFromRepoName(repoName);
         return new ResponseEntity<>(tutorialService.getLessonsForTutorial(githubUrl, tutorialId), HttpStatus.OK);
     }
+
+    // POST (Creating a resource)
+    @PostMapping("/createProject")
+    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+        Project createdProject = projectService.createProject(project);
+    }
 }
