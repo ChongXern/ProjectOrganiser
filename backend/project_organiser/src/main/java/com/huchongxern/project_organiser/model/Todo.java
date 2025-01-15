@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.ZoneId;
 import java.util.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Document(collection = "todos")
 @Data
@@ -59,4 +60,12 @@ public class Todo {
         this.text = "";
         this.priority = 1;
     }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Todo)) return false;
+        Todo todo = (Todo)o;
+        return Objects.equals(this._id, todo._id) && Objects.equals(this.desc, todo.desc); //consider nlp
+    }
 }

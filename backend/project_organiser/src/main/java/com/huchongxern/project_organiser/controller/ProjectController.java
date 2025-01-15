@@ -11,13 +11,19 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+/*
+Resources operations corresponding to CRUD:
+1. POST to create new resources in db
+2. GET to read or retrieve resources from db
+3. PUT to update existing resources or completely replace a resource
+4. PATCH to partially update resource
+5. DELETE to delete resource from db via id
+ */
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -46,6 +52,7 @@ public class ProjectController {
         throw new RuntimeException("Unable to find project with name " + repoName);
     }
 
+    // GET mappings
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects() {
         List<Project> allProjects = projectService.allProjects();
