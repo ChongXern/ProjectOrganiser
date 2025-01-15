@@ -67,7 +67,7 @@ public class ProjectService {
 
     public void deleteProject(ObjectId id) {
         if (!projectRepository.existsById(id)) {
-            throw new RuntimeException("Project not found with ID: " + id)
+            throw new RuntimeException("Project not found with ID: " + id);
         }
         projectRepository.deleteById(id);
     }

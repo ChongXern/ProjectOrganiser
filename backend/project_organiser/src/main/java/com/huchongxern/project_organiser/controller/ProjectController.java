@@ -95,6 +95,19 @@ public class ProjectController {
     // POST (Creating a resource)
     @PostMapping("/createProject")
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
-        Project createdProject = projectService.createProject(project);
+        return new ResponseEntity<>(projectService.createProject(project), HttpStatus.CREATED);
+    }
+
+    // PUT (Updating a resource)
+    @PutMapping("/updateProject/{projectId}")
+    public ResponseEntity<Project> updateProject(@PathVariable ObjectId projectId, @RequestBody Project newProject) {
+        return new ResponseEntity<>(projectService.updateProject(projectId, newProject), HttpStatus.OK);
+    }
+
+    // DELETE (deleting resource)
+    @DeleteMapping("/deleteProject/{projectId}")
+    public ResponseEntity<Project> deleteProject(@PathVariable ObjectId projectId) {
+        projectService.deleteProject(projectId);
+        return ResponseEntity.noContent().build();
     }
 }
