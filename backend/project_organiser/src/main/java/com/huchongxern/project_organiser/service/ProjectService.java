@@ -2,6 +2,7 @@ package com.huchongxern.project_organiser.service;
 
 import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.model.Project;
+import com.huchongxern.project_organiser.model.Todo;
 import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.repository.LessonRepository;
 import com.huchongxern.project_organiser.repository.ProjectRepository;
@@ -14,7 +15,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.huchongxern.project_organiser.utils.Util.getCurrDate;
 
 @Service
 public class ProjectService {
@@ -70,5 +74,85 @@ public class ProjectService {
             throw new RuntimeException("Project not found with ID: " + id);
         }
         projectRepository.deleteById(id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Project patchProject(ObjectId projectId, Map<String, Object> updates) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String field = entry.getKey();
+            Object value = entry.getValue();
+
+            switch (field) {
+                case "name":
+                    project.setName((String) value);
+                    break;
+                case "github_last_commit":
+                    project.setGithub_last_commit((String) value);
+                    break;
+                case "status":
+                    String status = (String)value;
+                    String newStatus = status.replace(' ', '_');
+                    project.setStatus(newStatus.toUpperCase());
+                    break;
+                case "last_updated":
+                    project.setLast_updated(getCurrDate()); // assume updating to now
+                    break;
+                case "todos":
+                    project.setTodos((List<Todo>) value); // assume cast is safe, suppress warning
+                    break;
+                case "tutorials":
+                    project.setTutorials((List<Tutorial>) value); // assume cast is safe
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid field: " + field);
+            }
+        }
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectName(ObjectId projectId, String name) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+
+        project.setName(name);
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectGithub_last_commit(ObjectId projectId, String github_last_commit) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        project.setGithub_last_commit(github_last_commit);
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectStatus(ObjectId projectId, String status) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        project.setStatus(status);
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectLastUpdated(ObjectId projectId) { // assume changing last updated to now
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        project.setLast_updated(getCurrDate());
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectTodos(ObjectId projectId, List<Todo> todos) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        project.setTodos(todos);
+        return projectRepository.save(project);
+    }
+
+    public Project updateProjectTutorials(ObjectId projectId, List<Tutorial> tutorials) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        project.setTutorials(tutorials);
+        return projectRepository.save(project);
     }
 }
