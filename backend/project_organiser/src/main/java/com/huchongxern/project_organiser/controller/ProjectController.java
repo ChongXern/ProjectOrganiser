@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /*
@@ -98,7 +100,7 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.createProject(project), HttpStatus.CREATED);
     }
 
-    // PUT (Updating a resource)
+    // PUT (Putting a resource)
     @PutMapping("/updateProject/{projectId}")
     public ResponseEntity<Project> updateProject(@PathVariable ObjectId projectId, @RequestBody Project newProject) {
         return new ResponseEntity<>(projectService.updateProject(projectId, newProject), HttpStatus.OK);
@@ -109,5 +111,27 @@ public class ProjectController {
     public ResponseEntity<Project> deleteProject(@PathVariable ObjectId projectId) {
         projectService.deleteProject(projectId);
         return ResponseEntity.noContent().build();
+    }
+
+    // PATCH (Update partially)
+    @PatchMapping("/updateProject/name/{projectId}")
+    public ResponseEntity<Project> updateProjectName(@PathVariable ObjectId projectId, @RequestParam String name) {
+        return new ResponseEntity<>(projectService.updateProjectName(projectId, name), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateProject/status/{projectId}")
+    public ResponseEntity<Project> updateProjectStatus(@PathVariable ObjectId projectId, @RequestParam String status){
+        return new ResponseEntity<>(projectService.updateProjectStatus(projectId, status), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateProject/last_updated/{projectId}")
+    public ResponseEntity<Project> updateProjectLastUpdated(@PathVariable ObjectId projectId) {
+        return new ResponseEntity<>(projectService.updateProjectLastUpdated(projectId), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateProject/any/{projectId}") // remember to document key and val formats
+    public ResponseEntity<Project> updateProject(@PathVariable ObjectId projectId,
+                                                 @RequestBody Map<String, Object> updates){
+        return new ResponseEntity<>(projectService.patchProject(projectId, updates), HttpStatus.OK);
     }
 }
