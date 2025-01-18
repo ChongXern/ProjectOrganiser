@@ -27,6 +27,10 @@ public class ProjectService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    public Project createProject(Project project) {
+        return projectRepository.save(project);
+    }
+
     public List<Project> allProjects() {
         return projectRepository.findAll();
     }
@@ -45,10 +49,6 @@ public class ProjectService {
         Query query = new Query();
         query.addCriteria(Criteria.where("status").is(status));
         return mongoTemplate.find(query, Project.class);
-    }
-
-    public Project createProject(Project project) {
-        return projectRepository.save(project);
     }
 
     public Project updateProject(ObjectId id, Project newProject) {
