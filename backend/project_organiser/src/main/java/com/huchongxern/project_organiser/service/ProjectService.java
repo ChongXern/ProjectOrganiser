@@ -32,6 +32,11 @@ public class ProjectService {
     @Autowired
     private TutorialService tutorialService;
 
+    private Project fetchProjectOrThrow(ObjectId id) {
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + id));
+    }
+
     public Project createProject(Project project) {
         return projectRepository.save(project);
     }
@@ -119,44 +124,38 @@ public class ProjectService {
     }
 
     public Project updateProjectName(ObjectId projectId, String name) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
 
         project.setName(name);
         return projectRepository.save(project);
     }
 
     public Project updateProjectGithub_last_commit(ObjectId projectId, String github_last_commit) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
         project.setGithub_last_commit(github_last_commit);
         return projectRepository.save(project);
     }
 
     public Project updateProjectStatus(ObjectId projectId, String status) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
         project.setStatus(status);
         return projectRepository.save(project);
     }
 
     public Project updateProjectLastUpdated(ObjectId projectId) { // assume changing last updated to now
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
         project.setLast_updated(getCurrDate());
         return projectRepository.save(project);
     }
 
     public Project updateProjectTodos(ObjectId projectId, List<Todo> todos) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
         project.setTodos(todos);
         return projectRepository.save(project);
     }
 
     public Project updateProjectTutorials(ObjectId projectId, List<Tutorial> tutorials) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
         project.setTutorials(tutorials);
         return projectRepository.save(project);
     }
