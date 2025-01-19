@@ -3,8 +3,9 @@ package com.huchongxern.project_organiser.controller;
 import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.service.ProjectService;
-import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.service.TutorialService;
+import com.huchongxern.project_organiser.service.TodoService;
+import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.utils.Util;
 import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
@@ -34,13 +35,15 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private TutorialService tutorialService;
+    @Autowired
+    private TodoService todoService;
 
     private ResponseEntity<String> notFoundResponse(String message) {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     private String findGithubUrlFromRepoName(String repoName) {
-        List<Project> projects = projectService.allProjects();
+        List<Project> projects = projectService.getAllProjects();
         // assume that no two projects share the same name
         for (Project project : projects) {
             if (project != null) {
@@ -57,7 +60,7 @@ public class ProjectController {
     // GET mappings
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects() {
-        List<Project> allProjects = projectService.allProjects();
+        List<Project> allProjects = projectService.getAllProjects();
         return ResponseEntity.ok(allProjects);
         //return new ResponseEntity<List<Project>>(projectService.allProjects(), HttpStatus.OK);
     }

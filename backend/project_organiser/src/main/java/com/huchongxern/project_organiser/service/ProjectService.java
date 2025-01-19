@@ -9,6 +9,7 @@ import com.huchongxern.project_organiser.repository.ProjectRepository;
 import com.huchongxern.project_organiser.repository.TutorialRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -26,12 +27,16 @@ public class ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Autowired
+    private TodoService todoService;
+    @Autowired
+    private TutorialService tutorialService;
 
     public Project createProject(Project project) {
         return projectRepository.save(project);
     }
 
-    public List<Project> allProjects() {
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
