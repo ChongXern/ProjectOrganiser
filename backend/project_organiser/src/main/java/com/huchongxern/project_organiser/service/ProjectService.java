@@ -88,8 +88,7 @@ public class ProjectService {
 
     @SuppressWarnings("unchecked")
     public Project patchProject(ObjectId projectId, Map<String, Object> updates) {
-        Project project = projectRepository.findById(projectId)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + projectId));
+        Project project = fetchProjectOrThrow(projectId);
 
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String field = entry.getKey();
