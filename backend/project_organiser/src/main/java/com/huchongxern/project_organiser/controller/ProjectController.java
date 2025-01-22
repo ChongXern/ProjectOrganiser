@@ -74,21 +74,22 @@ public class ProjectController {
     public ResponseEntity<Optional<Project>> getProjectByRepoName(@PathVariable String repoName) {
         String fullGithubUrl = findGithubUrlFromRepoName(repoName);
         Util.terminal("ls");
+        return new ResponseEntity<>(projectService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
         //String fullGithubUrl2 = "https://github.com/ChongXern/" + repoName; // adjust to consider other usernames
-        return new ResponseEntity<>(tutorialService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
+        //return new ResponseEntity<>(tutorialService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}/tutorials")
     public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String repoName) {
         String githubUrl = findGithubUrlFromRepoName(repoName);
-        return new ResponseEntity<>(tutorialService.getTutorialsForProject(githubUrl), HttpStatus.OK);
+        return new ResponseEntity<>(projectService.getTutorialsForProject(githubUrl), HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}")
     public ResponseEntity<Tutorial> getTutorial(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
         String githubUrl = findGithubUrlFromRepoName(repoName);
-        return new ResponseEntity<>(tutorialService.getTutorialForProjectFromTutorialId(githubUrl, tutorialId),
-                HttpStatus.OK);
+        Tutorial tutorial = tutorialService.getTutorialByGithubUrlAndId(githubUrl, tutorialId);;
+        return new ResponseEntity<>(tutorial, HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}/lessons")

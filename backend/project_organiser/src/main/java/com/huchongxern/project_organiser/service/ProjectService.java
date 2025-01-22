@@ -61,9 +61,35 @@ public class ProjectService {
         return mongoTemplate.find(query, Project.class);
     }
 
+    public Optional<Project> getProjectByGithubUrlName(String fullGithubUrl) {
+        return projectRepository.findProjectByGithubUrl(fullGithubUrl);
+    }
+
+    public List<Project> getAllProjectsSortedByName() {
+        return projectRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+    }
+
+    public List<Tutorial> getTutorialsForProject(String githubUrl) {
+        Optional<Project> project = getProjectByGithubUrlName(githubUrl);
+        if (project.isPresent()) {
+            return project.get().getTutorials();
+        }
+        throw new RuntimeException("Project not found for given Github URL");
+    }
+
+    public Tutorial getTutorialForProjectFromTutorialId(String githubUrl, ObjectId tutorialId){
+        List<Tutorial> tutorialList = getTutorialsForProject(githubUrl);
+        for (Tutorial tutorial : tutorialList) {
+            if (tutorial.get_id().equals(tutorialId)) {
+                System.out.println("FOUND TUTORIAL WITH ID: " + tutorialId);
+                return tutorial;
+            }
+        }
+        throw new RuntimeException("Tutorial not found for tutorial id: " + tutorialId);
+    }
+
     public Project updateProject(ObjectId id, Project newProject) {
-        Project existingProject = projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + id));
+        Project existingProject = fetchProjectOrThrow(id);
 
         // set new attributes one by one
         existingProject.setName(newProject.getName());
