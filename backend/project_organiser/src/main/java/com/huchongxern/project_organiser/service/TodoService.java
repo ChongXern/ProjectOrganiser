@@ -5,12 +5,10 @@ import com.huchongxern.project_organiser.model.Todo;
 import com.huchongxern.project_organiser.repository.TodoRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TodoService {
@@ -27,6 +25,18 @@ public class TodoService {
 
     public List<Todo> getAllTodos() {
         return todoRepository.findAll();
+    }
+
+    public List<Todo> getAllTodosSortedByPriority() {
+        return todoRepository.findAll(Sort.by(Sort.Direction.ASC, "priority"));
+    }
+
+    public List<Todo> getCompletedTodos() {
+        return todoRepository.findTodoByIs_done(true).orElse(Collections.emptyList());
+    }
+
+    public List<Todo> getPendingTodos() {
+        return todoRepository.findTodoByIs_done(false).orElse(Collections.emptyList());
     }
 
     public Todo updateTodo(ObjectId id, Todo todo) {
