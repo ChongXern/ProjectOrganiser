@@ -28,9 +28,11 @@ public class Project {
     private List<String> categories;
     @Field("github_url")
     private String githubUrl;
-    private String github_last_commit;
+    @Field("github_last_commit")
+    private String githubLastCommit;
     private String status;
-    private Date last_updated;
+    @Field("last_updated")
+    private Date lastUpdated;
     @DocumentReference
     private List<Todo> todos;
     @DocumentReference
@@ -43,19 +45,19 @@ public class Project {
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
         this.start_time = Util.getCurrDate();
-        this.last_updated = this.start_time;
+        this.lastUpdated = this.start_time;
         this.status = "NOT_STARTED";
     }*/
 
-    public Project(ObjectId _id, String name, String githubUrl, String github_last_commit) {
+    public Project(ObjectId _id, String name, String githubUrl, String githubLastCommit) {
         this._id = _id;
         this.name = name;
         this.githubUrl = githubUrl;
-        this.github_last_commit = github_last_commit;
+        this.githubLastCommit = githubLastCommit;
 
         LocalDate today = LocalDate.now();
         this.start_time = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        this.last_updated = this.start_time;
+        this.lastUpdated = this.start_time;
         this.status = "NOT_STARTED";
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();

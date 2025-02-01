@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
@@ -17,26 +18,28 @@ import java.util.Date;
 public class Lesson {
     @Id
     private ObjectId _id;
-    private String lesson_learnt;
+    @Field("lesson_learnt")
+    private String lessonLearnt;
     private String application;
-    private Date created_date;
+    @Field("created_date")
+    private Date createdDate;
 
     // constructor for automatically creating template Lesson
     public Lesson(ObjectId _id) {
         this._id = _id;
-        this.lesson_learnt = "";
+        this.lessonLearnt = "";
         this.application = "";
-        this.created_date = Util.getCurrDate();
+        this.createdDate = Util.getCurrDate();
     }
 
-    public Lesson(String lesson_learnt, String application) {
+    public Lesson(String lessonLearnt, String application) {
         this._id = new ObjectId();
-        this.lesson_learnt = lesson_learnt;
+        this.lessonLearnt = lessonLearnt;
         this.application = application;
-        this.created_date = Util.getCurrDate();
+        this.createdDate = Util.getCurrDate();
     }
 
-    public void set_created_date() {
-        created_date = Util.getCurrDate();
+    public void set_createdDate() {
+        createdDate = Util.getCurrDate();
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.ZoneId;
 import java.util.Date;
@@ -21,34 +22,37 @@ public class Todo {
     @Id
     private ObjectId _id;
     private String desc;
-    private Date created_date;
-    private Date start_time;
+    @Field("created_date")
+    private Date createdDate;
+    @Field("start_time")
+    private Date startTime;
     private Date deadline;
-    private boolean is_done;
+    @Field("is_done")
+    private boolean isDone;
     private int priority;
 
     private void setDefaultDates() {
         LocalDate today = LocalDate.now();
-        this.created_date = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        this.start_time = Date.from(today.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.createdDate = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.startTime = Date.from(today.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
         this.deadline = Date.from(today.plusDays(4).atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
-    // constructor for setting dates based on today, and sets is_done to false
+    // constructor for setting dates based on today, and sets isDone to false
     public Todo(ObjectId _id, String desc, int priority) {
         this._id = _id;
         this.desc = desc;
         this.priority = priority;
 
         setDefaultDates();
-        this.is_done = false;
+        this.isDone = false;
     }
 
     // even more watered down constructor for template item
     public Todo(ObjectId _id){
         this._id = _id;
         setDefaultDates();
-        this.is_done = false;
+        this.isDone = false;
         this.desc = "";
         this.priority = 1;
     }
@@ -56,7 +60,7 @@ public class Todo {
     /*public Todo() {
         this._id = Util.generateId();
         setDefaultDates();
-        this.is_done = false;
+        this.isDone = false;
         this.text = "";
         this.priority = 1;
     }*/
