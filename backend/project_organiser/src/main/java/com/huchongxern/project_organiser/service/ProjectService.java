@@ -96,9 +96,9 @@ public class ProjectService {
         existingProject.setStart_time(newProject.getStart_time());
         existingProject.setCategories(newProject.getCategories());
         existingProject.setGithubUrl(newProject.getGithubUrl());
-        existingProject.setGithub_last_commit(newProject.getGithub_last_commit());
+        existingProject.setGithubLastCommit(newProject.getGithubLastCommit());
         existingProject.setStatus(newProject.getStatus());
-        existingProject.setLast_updated(newProject.getLast_updated());
+        existingProject.setLastUpdated(newProject.getLastUpdated());
         existingProject.setTodos(newProject.getTodos());
         existingProject.setTutorials(newProject.getTutorials());
 
@@ -125,7 +125,7 @@ public class ProjectService {
                     project.setName((String) value);
                     break;
                 case "github_last_commit":
-                    project.setGithub_last_commit((String) value);
+                    project.setGithubLastCommit((String) value);
                     break;
                 case "status":
                     String status = (String)value;
@@ -133,7 +133,7 @@ public class ProjectService {
                     project.setStatus(newStatus.toUpperCase());
                     break;
                 case "last_updated":
-                    project.setLast_updated(getCurrDate()); // assume updating to now
+                    project.setLastUpdated(getCurrDate()); // assume updating to now
                     break;
                 case "todos":
                     project.setTodos((List<Todo>) value); // assume cast is safe, suppress warning
@@ -157,7 +157,7 @@ public class ProjectService {
 
     public Project updateProjectGithub_last_commit(ObjectId projectId, String github_last_commit) {
         Project project = fetchProjectOrThrow(projectId);
-        project.setGithub_last_commit(github_last_commit);
+        project.setGithubLastCommit(github_last_commit);
         return projectRepository.save(project);
     }
 
@@ -169,7 +169,7 @@ public class ProjectService {
 
     public Project updateProjectLastUpdated(ObjectId projectId) { // assume changing last updated to now
         Project project = fetchProjectOrThrow(projectId);
-        project.setLast_updated(getCurrDate());
+        project.setLastUpdated(getCurrDate());
         return projectRepository.save(project);
     }
 
@@ -183,5 +183,11 @@ public class ProjectService {
         Project project = fetchProjectOrThrow(projectId);
         project.setTutorials(tutorials);
         return projectRepository.save(project);
+    }
+
+    public boolean doesProjectContainTutorial(String githubUrl, ObjectId tutorialId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("github_url").is(githubUrl).and("tutorials").is(tutorialId));
+        return mongoTemplate.exists(query, Project.class);
     }
 }

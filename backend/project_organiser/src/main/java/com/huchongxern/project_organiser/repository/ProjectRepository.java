@@ -22,5 +22,5 @@ public interface ProjectRepository extends MongoRepository<Project, ObjectId> {
     @NotNull
     List<Project> findAll(@NotNull Sort sort);
 
-    Optional<List<Project>> findProjectByCategory(String category);
+    //Optional<List<Project>> findProjectByCategory(String category);
 }

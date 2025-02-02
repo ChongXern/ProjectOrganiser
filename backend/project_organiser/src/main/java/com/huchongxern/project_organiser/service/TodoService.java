@@ -32,11 +32,11 @@ public class TodoService {
     }
 
     public List<Todo> getCompletedTodos() {
-        return todoRepository.findTodoByIs_done(true).orElse(Collections.emptyList());
+        return todoRepository.findTodoByIsDone(true).orElse(Collections.emptyList());
     }
 
     public List<Todo> getPendingTodos() {
-        return todoRepository.findTodoByIs_done(false).orElse(Collections.emptyList());
+        return todoRepository.findTodoByIsDone(false).orElse(Collections.emptyList());
     }
 
     public Todo updateTodo(ObjectId id, Todo todo) {
@@ -44,10 +44,10 @@ public class TodoService {
                 .orElseThrow(() -> new RuntimeException("Todo item not found with ID: " + id));
 
         existingTodo.setDesc(todo.getDesc());
-        existingTodo.setCreated_date(todo.getCreated_date());
-        existingTodo.setStart_time(todo.getStart_time());
+        existingTodo.setCreatedDate(todo.getCreatedDate());
+        existingTodo.setStartTime(todo.getStartTime());
         existingTodo.setDeadline(todo.getDeadline());
-        existingTodo.set_done(todo.is_done());
+        existingTodo.setDone(todo.isDone());
         existingTodo.setPriority(todo.getPriority());
 
         return todoRepository.save(existingTodo);
@@ -73,16 +73,16 @@ public class TodoService {
                     existingTodo.setDesc((String) value);
                     break;
                 case "created_date":
-                    existingTodo.setCreated_date((Date) value);
+                    existingTodo.setCreatedDate((Date) value);
                     break;
                 case "start_time":
-                    existingTodo.setStart_time((Date)value);
+                    existingTodo.setStartTime((Date)value);
                     break;
                 case "deadline":
                     existingTodo.setDeadline((Date)value);
                     break;
                 case "is_done":
-                    existingTodo.set_done((Boolean) value);
+                    existingTodo.setDone((Boolean) value);
                     break;
                 case "priority":
                     existingTodo.setPriority((Integer) value);

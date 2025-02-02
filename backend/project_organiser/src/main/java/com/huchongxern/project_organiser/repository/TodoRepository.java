@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface TodoRepository extends MongoRepository<Todo, ObjectId> {
-    Optional<List<Todo>> findTodoByIs_done(boolean is_done);
+    Optional<List<Todo>> findTodoByIsDone(boolean isDone);
     @NotNull
     List<Todo> findAll(@NotNull Sort sort);
 }

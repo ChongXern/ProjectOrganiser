@@ -22,18 +22,12 @@ public class TutorialService {
                 .orElseThrow(() -> new RuntimeException("Tutorial not found with ID: " + tutorialId));
     }
 
-    public List<Lesson> getLessonsForTutorial(String githubUrl, ObjectId tutorialId) {
+    public List<Lesson> getLessonsForTutorial(ObjectId tutorialId) {
         Optional<Tutorial> tutorial = tutorialRepository.findById(tutorialId);
         if (tutorial.isPresent()){
             return tutorial.get().getLessons();
         } else {
             throw new RuntimeException("Tutorial Not Found");
         }
-    }
-
-    public Tutorial getTutorialByGithubUrlAndId(String githubUrl, ObjectId tutorialId) {
-        return tutorialRepository.findByGithubUrlAndId(githubUrl, tutorialId)
-                .orElseThrow(() -> new RuntimeException("Tutorial not found for GitHub URL: " + githubUrl
-                        + " and ID: " + tutorialId));
     }
 }

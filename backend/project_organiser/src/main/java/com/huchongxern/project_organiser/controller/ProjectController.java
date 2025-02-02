@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.List;
@@ -57,6 +58,13 @@ public class ProjectController {
         throw new RuntimeException("Unable to find project with name " + repoName);
     }
 
+    private void validateTutorialBelongsToProject(String repoName, ObjectId tutorialId) {
+        String githubUrl = findGithubUrlFromRepoName(repoName);
+        if (!projectService.doesProjectContainTutorial(githubUrl, tutorialId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tutorial not found in this project.");
+        }
+    }
+
     // GET mappings
     @GetMapping
     public ResponseEntity<List<Project>> getAllProjects() {
@@ -87,15 +95,15 @@ public class ProjectController {
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}")
     public ResponseEntity<Tutorial> getTutorial(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
-        String githubUrl = findGithubUrlFromRepoName(repoName);
-        Tutorial tutorial = tutorialService.getTutorialByGithubUrlAndId(githubUrl, tutorialId);;
-        return new ResponseEntity<>(tutorial, HttpStatus.OK);
+        validateTutorialBelongsToProject(repoName, tutorialId);
+        return new ResponseEntity<>(tutorialService.getTutorialFromTutorialId(tutorialId), HttpStatus.OK);
     }
 
     @GetMapping("/{repoName}/tutorials/{tutorialId}/lessons")
     public ResponseEntity<List<Lesson>> getLessons(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
-        String githubUrl = findGithubUrlFromRepoName(repoName);
-        return new ResponseEntity<>(tutorialService.getLessonsForTutorial(githubUrl, tutorialId), HttpStatus.OK);
+        // check whether repoName contains the tutorial id
+        validateTutorialBelongsToProject(repoName, tutorialId);
+        return new ResponseEntity<>(tutorialService.getLessonsForTutorial(tutorialId), HttpStatus.OK);
     }
 
     // POST (Creating a resource)

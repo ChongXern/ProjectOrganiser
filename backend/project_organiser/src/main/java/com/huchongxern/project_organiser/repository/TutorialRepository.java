@@ -9,5 +9,4 @@ import java.util.Optional;
 
 @Repository
 public interface TutorialRepository extends MongoRepository<Tutorial, ObjectId> {
-    Optional<Tutorial> findByGithubUrlAndId(String githubUrl, ObjectId tutorialId);
 }
