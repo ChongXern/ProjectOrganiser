@@ -34,10 +34,6 @@ Resources operations corresponding to CRUD:
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
-    @Autowired
-    private TutorialService tutorialService;
-    @Autowired
-    private TodoService todoService;
 
     private ResponseEntity<String> notFoundResponse(String message) {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
@@ -91,19 +87,6 @@ public class ProjectController {
     public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String repoName) {
         String githubUrl = findGithubUrlFromRepoName(repoName);
         return new ResponseEntity<>(projectService.getTutorialsForProject(githubUrl), HttpStatus.OK);
-    }
-
-    @GetMapping("/{repoName}/tutorials/{tutorialId}")
-    public ResponseEntity<Tutorial> getTutorial(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
-        validateTutorialBelongsToProject(repoName, tutorialId);
-        return new ResponseEntity<>(tutorialService.getTutorialFromTutorialId(tutorialId), HttpStatus.OK);
-    }
-
-    @GetMapping("/{repoName}/tutorials/{tutorialId}/lessons")
-    public ResponseEntity<List<Lesson>> getLessons(@PathVariable String repoName, @PathVariable ObjectId tutorialId) {
-        // check whether repoName contains the tutorial id
-        validateTutorialBelongsToProject(repoName, tutorialId);
-        return new ResponseEntity<>(tutorialService.getLessonsForTutorial(tutorialId), HttpStatus.OK);
     }
 
     // POST (Creating a resource)
