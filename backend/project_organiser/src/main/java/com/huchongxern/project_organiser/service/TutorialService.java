@@ -7,6 +7,9 @@ import com.huchongxern.project_organiser.repository.ProjectRepository;
 import com.huchongxern.project_organiser.repository.TutorialRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class TutorialService {
     @Autowired
     private TutorialRepository tutorialRepository;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public Tutorial getTutorialFromTutorialId(ObjectId tutorialId) {
         return tutorialRepository.findById(tutorialId)
@@ -29,5 +34,14 @@ public class TutorialService {
         } else {
             throw new RuntimeException("Tutorial Not Found");
         }
+    }
+
+    public boolean existsById(ObjectId tutorialId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(tutorialId));
+        return mongoTemplate.exists(query, Tutorial.class);
+    }
+    public List<Tutorial> getAllTutorials() {
+        return tutorialRepository.findAll();
     }
 }

@@ -19,8 +19,9 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
-    public Optional<Todo> getTodoById(ObjectId id) {
-        return todoRepository.findById(id);
+    public Todo getTodoById(ObjectId id) {
+        return todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo item not found with ID: " + id));
     }
 
     public List<Todo> getAllTodos() {

@@ -5,18 +5,22 @@ import com.huchongxern.project_organiser.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/projects")
+@RequestMapping("/api/v1/lessons")
 public class LessonController {
     @Autowired
     private LessonService lessonService;
+
+    @GetMapping
+    public ResponseEntity<List<Lesson>> getAllLessons() {
+        List<Lesson> allLessons = lessonService.getAllLesssons();
+        return new ResponseEntity<>(allLessons, HttpStatus.OK);
+    }
 
     // single post method
     @PostMapping

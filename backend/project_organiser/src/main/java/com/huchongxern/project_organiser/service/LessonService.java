@@ -40,4 +40,8 @@ public class LessonService {
         query.addCriteria(Criteria.where("_done").is(status));
         return mongoTemplate.find(query, Lesson.class);
     }
+
+    public List<Lesson> getAllLesssons() {
+        return lessonRepository.findAll();
+    }
 }
