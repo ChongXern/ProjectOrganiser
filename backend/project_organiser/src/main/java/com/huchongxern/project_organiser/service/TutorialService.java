@@ -41,6 +41,11 @@ public class TutorialService {
         query.addCriteria(Criteria.where("_id").is(tutorialId));
         return mongoTemplate.exists(query, Tutorial.class);
     }
+
+    public Tutorial createTutorial(Tutorial tutorial) {
+        return tutorialRepository.save(tutorial);
+    }
+
     public List<Tutorial> getAllTutorials() {
         return tutorialRepository.findAll();
     }

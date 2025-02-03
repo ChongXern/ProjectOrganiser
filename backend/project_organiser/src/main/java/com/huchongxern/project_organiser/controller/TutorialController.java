@@ -41,4 +41,9 @@ public class TutorialController {
         validateTutorial(tutorialId);
         return new ResponseEntity<>(tutorialService.getLessonsForTutorial(tutorialId), HttpStatus.OK);
     }
+
+    @PostMapping("/createTutorial")
+    public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
+        return new ResponseEntity<>(tutorialService.createTutorial(tutorial), HttpStatus.OK);
+    }
 }
