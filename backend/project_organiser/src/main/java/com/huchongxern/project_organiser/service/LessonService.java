@@ -2,6 +2,7 @@ package com.huchongxern.project_organiser.service;
 
 import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.repository.LessonRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -43,5 +44,20 @@ public class LessonService {
 
     public List<Lesson> getAllLesssons() {
         return lessonRepository.findAll();
+    }
+
+    public Lesson updateLesson(ObjectId lessonId, Lesson newLesson) {
+        Lesson existingLesson = fetchLessonOrThrow(lessonId);
+
+        existingLesson.setLessonLearnt(newLesson.getLessonLearnt());
+        existingLesson.setCreatedDate(newLesson.getCreatedDate());
+        existingLesson.setApplication(newLesson.getApplication());
+
+        return lessonRepository.save(existingLesson);
+    }
+
+    private Lesson fetchLessonOrThrow(ObjectId id) {
+        return lessonRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Lesson not found with ID: " + id));
     }
 }

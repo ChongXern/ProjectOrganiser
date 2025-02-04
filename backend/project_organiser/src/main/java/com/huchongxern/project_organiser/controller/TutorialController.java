@@ -46,4 +46,10 @@ public class TutorialController {
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         return new ResponseEntity<>(tutorialService.createTutorial(tutorial), HttpStatus.OK);
     }
+
+    @PutMapping("/updateTutorial/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorial(@PathVariable ObjectId tutorialId,
+                                                   @RequestBody Tutorial newTutorial) {
+        return new ResponseEntity<>(tutorialService.updateTutorial(tutorialId, newTutorial), HttpStatus.OK);
+    }
 }

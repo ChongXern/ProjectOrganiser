@@ -2,6 +2,7 @@ package com.huchongxern.project_organiser.controller;
 
 import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.service.LessonService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,11 @@ public class LessonController {
         String application = payload.get("application");
         Lesson lesson = lessonService.createLesson(lessonLearnt, application);
         return new ResponseEntity<Lesson>(lesson, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updateLesson/{lessonId}")
+    public ResponseEntity<Lesson> updateLesson(@PathVariable ObjectId lessonId, @RequestBody Lesson newLesson){
+        return new ResponseEntity<>(lessonService.updateLesson(lessonId, newLesson), HttpStatus.OK);
     }
 
 }

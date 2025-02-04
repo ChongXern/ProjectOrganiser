@@ -2,6 +2,7 @@ package com.huchongxern.project_organiser.controller;
 
 import com.huchongxern.project_organiser.model.Todo;
 import com.huchongxern.project_organiser.service.TodoService;
+import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,10 @@ public class TodoController {
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo) {
         Todo createdTodo = todoService.createTodo(todo);
         return new ResponseEntity<>(createdTodo, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updateTodo/{todoId}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable ObjectId todoId, @RequestBody Todo newTodo) {
+        return new ResponseEntity<>(todoService.updateTodo(todoId, newTodo), HttpStatus.OK);
     }
 }

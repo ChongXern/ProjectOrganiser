@@ -39,7 +39,7 @@ public class Lesson {
         this.createdDate = Util.getCurrDate();
     }
 
-    public void set_createdDate() {
-        createdDate = Util.getCurrDate();
+    public void setCreatedDate() {
+        this.createdDate = Util.getCurrDate();
     }
 }
