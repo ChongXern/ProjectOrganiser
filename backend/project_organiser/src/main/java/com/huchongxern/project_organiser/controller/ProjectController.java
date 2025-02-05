@@ -89,6 +89,18 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.getTutorialsForProject(githubUrl), HttpStatus.OK);
     }
 
+    @GetMapping("SortedName")
+    public ResponseEntity<List<Project>> getAllProjectsSortedByName() {
+        List<Project> sortedProjects = projectService.getAllProjectsSortedByName();
+        return new ResponseEntity<>(sortedProjects, HttpStatus.OK);
+    }
+
+    @GetMapping("/status?={status}")
+    public ResponseEntity<List<Project>> getProjectsByStatus(@PathVariable String status) {
+        List<Project> projects = projectService.getProjectsByStatus(status);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+
     // POST (Creating a resource)
     @PostMapping("/createProject")
     public ResponseEntity<Project> createProject(@RequestBody Project project) {

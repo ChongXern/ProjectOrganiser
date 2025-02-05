@@ -23,10 +23,27 @@ public class TodoController {
         return new ResponseEntity<>(allTodos, HttpStatus.OK);
     }
 
+    @GetMapping("SortedPriority")
+    public ResponseEntity<List<Todo>> getAllTodosSortedByPriority() {
+        List<Todo> sortedTodos = todoService.getAllTodosSortedByPriority();
+        return new ResponseEntity<>(sortedTodos, HttpStatus.OK);
+    }
+
     @GetMapping("/{todoId}")
     public ResponseEntity<Todo> getTodo(@PathVariable ObjectId todoId) {
         Todo foundTodo = todoService.getTodoById(todoId);
         return new ResponseEntity<>(foundTodo, HttpStatus.OK);
+    }
+
+    @GetMapping("/completed?={isComplete}")
+    public ResponseEntity<List<Todo>> getTodosByCompleteStatus(@PathVariable boolean isComplete) {
+        List<Todo> todoList;
+        if (isComplete) {
+            todoList = todoService.getCompletedTodos();
+        } else {
+            todoList = todoService.getPendingTodos();
+        }
+        return new ResponseEntity<>(todoList, HttpStatus.OK);
     }
 
     @PostMapping("/createTodo")

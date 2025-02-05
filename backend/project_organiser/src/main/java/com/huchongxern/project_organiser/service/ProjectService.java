@@ -1,12 +1,9 @@
 package com.huchongxern.project_organiser.service;
 
-import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.model.Todo;
 import com.huchongxern.project_organiser.model.Tutorial;
-import com.huchongxern.project_organiser.repository.LessonRepository;
 import com.huchongxern.project_organiser.repository.ProjectRepository;
-import com.huchongxern.project_organiser.repository.TutorialRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -77,17 +74,6 @@ public class ProjectService {
         throw new RuntimeException("Project not found for given Github URL");
     }
 
-    public Tutorial getTutorialForProjectFromTutorialId(String githubUrl, ObjectId tutorialId){
-        List<Tutorial> tutorialList = getTutorialsForProject(githubUrl);
-        for (Tutorial tutorial : tutorialList) {
-            if (tutorial.get_id().equals(tutorialId)) {
-                System.out.println("FOUND TUTORIAL WITH ID: " + tutorialId);
-                return tutorial;
-            }
-        }
-        throw new RuntimeException("Tutorial not found for tutorial id: " + tutorialId);
-    }
-
     public Project updateProject(ObjectId id, Project newProject) {
         Project existingProject = fetchProjectOrThrow(id);
 
@@ -155,7 +141,7 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public Project updateProjectGithub_last_commit(ObjectId projectId, String github_last_commit) {
+    public Project updateProjectGithubLastCommit(ObjectId projectId, String github_last_commit) {
         Project project = fetchProjectOrThrow(projectId);
         project.setGithubLastCommit(github_last_commit);
         return projectRepository.save(project);
