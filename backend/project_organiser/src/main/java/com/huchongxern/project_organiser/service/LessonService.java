@@ -60,4 +60,11 @@ public class LessonService {
         return lessonRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Lesson not found with ID: " + id));
     }
+
+    public void deleteLesson(ObjectId lessonId) {
+        if (!lessonRepository.existsById(lessonId)) {
+            throw new RuntimeException("Lesson not found with ID: " + lessonId);
+        }
+        lessonRepository.deleteById(lessonId);
+    }
 }

@@ -52,4 +52,10 @@ public class TutorialController {
                                                    @RequestBody Tutorial newTutorial) {
         return new ResponseEntity<>(tutorialService.updateTutorial(tutorialId, newTutorial), HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteTutorial/{tutorialId}")
+    public ResponseEntity<Tutorial> deleteTutorial(@PathVariable ObjectId tutorialId) {
+        tutorialService.deleteTutorial(tutorialId);
+        return ResponseEntity.noContent().build();
+    }
 }

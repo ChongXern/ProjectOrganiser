@@ -49,4 +49,29 @@ public class TutorialService {
     public List<Tutorial> getAllTutorials() {
         return tutorialRepository.findAll();
     }
+
+    private Tutorial fetchTutorialOrThrow(ObjectId id) {
+        return tutorialRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tutorial not found with ID: " + id));
+    }
+
+    public Tutorial updateTutorial(ObjectId tutorialId, Tutorial newTutorial) {
+        Tutorial existingTutorial = fetchTutorialOrThrow(tutorialId);
+
+        existingTutorial.setName(newTutorial.getName());
+        existingTutorial.setTutorialUrl(newTutorial.getTutorialUrl());
+        existingTutorial.setDone(newTutorial.isDone());
+        existingTutorial.setCategory(newTutorial.getCategory());
+        existingTutorial.setCreatedDate(newTutorial.getCreatedDate());
+        existingTutorial.setLessons(newTutorial.getLessons());
+
+        return tutorialRepository.save(existingTutorial);
+    }
+
+    public void deleteTutorial(ObjectId tutorialId) {
+        if (!tutorialRepository.existsById(tutorialId)) {
+            throw new RuntimeException("Tutorial item not found with ID: " + tutorialId);
+        }
+        tutorialRepository.deleteById(tutorialId);
+    }
 }

@@ -37,4 +37,9 @@ public class LessonController {
         return new ResponseEntity<>(lessonService.updateLesson(lessonId, newLesson), HttpStatus.OK);
     }
 
+    @DeleteMapping("/deleteLesson/{lessonId}")
+    public ResponseEntity<Lesson> deleteLesosn(@PathVariable ObjectId lessonId) {
+        lessonService.deleteLesson(lessonId);
+        return ResponseEntity.noContent().build();
+    }
 }
