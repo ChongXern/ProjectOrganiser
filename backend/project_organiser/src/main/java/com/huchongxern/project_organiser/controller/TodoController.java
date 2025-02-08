@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class TodoController {
         return new ResponseEntity<>(foundTodo, HttpStatus.OK);
     }
 
-    @GetMapping("/completed?={isComplete}")
+    @GetMapping("/status")
     public ResponseEntity<List<Todo>> getTodosByCompleteStatus(@PathVariable boolean isComplete) {
         List<Todo> todoList;
         if (isComplete) {
@@ -61,5 +62,35 @@ public class TodoController {
     public ResponseEntity<Todo> deleteTodo(@PathVariable ObjectId todoId){
         todoService.deleteTodo(todoId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/updateTodo/desc/{todoId}")
+    public ResponseEntity<Todo> updateTodoDesc(@PathVariable ObjectId todoId, @RequestParam String desc) {
+        return new ResponseEntity<>(todoService.updateTodoDesc(todoId, desc), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateTodo/createdDate/{todoId}")
+    public ResponseEntity<Todo> updateTodoCreatedDate(@PathVariable ObjectId todoId, @RequestParam Date createdDate){
+        return new ResponseEntity<>(todoService.updateTodoCreateDate(todoId, createdDate), HttpStatus.OK);
+    }
+
+    @PatchMapping("updateTodo/startTime/{todoId}")
+    public ResponseEntity<Todo> updateTodoStartTime(@PathVariable ObjectId todoId, @RequestParam Date startTime) {
+        return new ResponseEntity<>(todoService.updateTodoStartTime(todoId, startTime), HttpStatus.OK);
+    }
+
+    @PatchMapping("updateTodo/deadline/{todoId}")
+    public ResponseEntity<Todo> updateTodoDeadline(@PathVariable ObjectId todoId, @RequestParam Date deadline) {
+        return new ResponseEntity<>(todoService.updateTodoDeadline(todoId, deadline), HttpStatus.OK);
+    }
+
+    @PatchMapping("updateTodo/isDone/{todoId}")
+    public ResponseEntity<Todo> updateTodoIsDone(@PathVariable ObjectId todoId, @RequestParam boolean isDone) {
+        return new ResponseEntity<>(todoService.updateTodoIsDone(todoId, isDone), HttpStatus.OK);
+    }
+
+    @PatchMapping("updateTodo/priority/{todoId}")
+    public ResponseEntity<Todo> updateTodoPriority(@PathVariable ObjectId todoId, @RequestParam int priority){
+        return new ResponseEntity<>(todoService.updateTodoPriority(todoId, priority), HttpStatus.OK);
     }
 }

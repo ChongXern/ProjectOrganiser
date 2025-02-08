@@ -1,6 +1,5 @@
 package com.huchongxern.project_organiser.service;
 
-import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.model.Todo;
 import com.huchongxern.project_organiser.repository.TodoRepository;
 import org.bson.types.ObjectId;
@@ -14,6 +13,11 @@ import java.util.*;
 public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
+
+    private Todo fetchTodoOrThrow(ObjectId id) {
+        return todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo item not found with ID: " + id));
+    }
 
     public Todo createTodo(Todo todo) {
         return todoRepository.save(todo);
@@ -93,5 +97,41 @@ public class TodoService {
             }
         }
         return todoRepository.save(existingTodo);
+    }
+
+    public Todo updateTodoDesc(ObjectId todoId, String desc) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setDesc(desc);
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoCreateDate(ObjectId todoId, Date createdDate) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setCreatedDate(createdDate);
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoStartTime(ObjectId todoId, Date startTime) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setStartTime(startTime);
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoDeadline(ObjectId todoId, Date deadline) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setDeadline(deadline);
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoIsDone(ObjectId todoId, boolean isDone) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setDone(isDone);
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoPriority(ObjectId todoId, int priority) {
+        Todo todo = fetchTodoOrThrow(todoId);
+        todo.setPriority(priority);
+        return todoRepository.save(todo);
     }
 }
