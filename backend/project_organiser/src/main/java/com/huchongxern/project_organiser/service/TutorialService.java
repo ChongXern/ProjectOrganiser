@@ -12,7 +12,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -73,5 +75,74 @@ public class TutorialService {
             throw new RuntimeException("Tutorial item not found with ID: " + tutorialId);
         }
         tutorialRepository.deleteById(tutorialId);
+    }
+
+    public Tutorial updateTutorialName(ObjectId id, String name){
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setName(name);
+        return tutorialRepository.save(tutorial);
+    }
+
+    public Tutorial updateTutorialTutorialUrl(ObjectId id, String tutorialUrl) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setTutorialUrl(tutorialUrl);
+        return tutorialRepository.save(tutorial);
+    }
+
+    public Tutorial updateTutorialIsDone(ObjectId id, boolean isDone) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setDone(isDone);
+        return tutorialRepository.save(tutorial);
+    }
+
+    public Tutorial updateTutorialCategory(ObjectId id, String category) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setCategory(category);
+        return tutorialRepository.save(tutorial);
+    }
+
+    public Tutorial updateTutorialCreatedDate(ObjectId id, Date createdDate) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setCreatedDate(createdDate);
+        return tutorialRepository.save(tutorial);
+    }
+
+    public Tutorial updateTutorialLessons(ObjectId id, List<Lesson> lessons) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        tutorial.setLessons(lessons);
+        return tutorialRepository.save(tutorial);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Tutorial patchTutorial(ObjectId id, Map<String, Object> updates) {
+        Tutorial tutorial = fetchTutorialOrThrow(id);
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String field = entry.getKey();
+            Object value = entry.getValue();
+
+            switch (field) {
+            case "name":
+                tutorial.setName((String)value);
+                break;
+            case "tutorialUrl":
+                tutorial.setTutorialUrl((String)value);
+                break;
+            case "isDone":
+                tutorial.setDone((boolean)value);
+                break;
+            case "category":
+                tutorial.setCategory((String) value);
+                break;
+            case "createdDate":
+                tutorial.setCreatedDate((Date) value);
+                break;
+            case "lessons":
+                tutorial.setLessons((List<Lesson>) value);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid field: " + field);
+            }
+        }
+        return tutorialRepository.save(tutorial);
     }
 }

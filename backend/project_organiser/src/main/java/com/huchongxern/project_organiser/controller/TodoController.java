@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/todos")
@@ -92,5 +93,17 @@ public class TodoController {
     @PatchMapping("updateTodo/priority/{todoId}")
     public ResponseEntity<Todo> updateTodoPriority(@PathVariable ObjectId todoId, @RequestParam int priority){
         return new ResponseEntity<>(todoService.updateTodoPriority(todoId, priority), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateTodo/any/{todoId}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable ObjectId todoId,
+                                           @RequestBody Map<String, Object> updates) {
+        try {
+            return new ResponseEntity<>(todoService.patchTodo(todoId, updates), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // invalid field
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

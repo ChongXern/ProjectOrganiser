@@ -28,6 +28,8 @@ public class Project {
     private List<String> categories;
     @Field("github_url")
     private String githubUrl;
+    @Field("github_user")
+    private String githubUser;
     @Field("github_last_commit")
     private String githubLastCommit;
     private String status;
@@ -49,10 +51,11 @@ public class Project {
         this.status = "NOT_STARTED";
     }*/
 
-    public Project(ObjectId _id, String name, String githubUrl, String githubLastCommit) {
+    public Project(ObjectId _id, String name, String githubUser, String githubUrl, String githubLastCommit) {
         this._id = _id;
         this.name = name;
         this.githubUrl = githubUrl;
+        this.githubUser = githubUser;
         this.githubLastCommit = githubLastCommit;
 
         LocalDate today = LocalDate.now();

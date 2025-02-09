@@ -1,6 +1,7 @@
 package com.huchongxern.project_organiser.service;
 
 import com.huchongxern.project_organiser.model.Todo;
+import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.repository.TodoRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
+import static com.huchongxern.project_organiser.utils.Util.getCurrDate;
 
 @Service
 public class TodoService {
@@ -66,8 +69,7 @@ public class TodoService {
     }
 
     public Todo patchTodo(ObjectId id, Map<String, Object> updates) {
-        Todo existingTodo = todoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Todo item not found with ID: " + id));
+        Todo existingTodo = fetchTodoOrThrow(id);
 
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String field = entry.getKey();

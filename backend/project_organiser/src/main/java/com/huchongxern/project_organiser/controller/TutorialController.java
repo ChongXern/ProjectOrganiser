@@ -11,6 +11,7 @@ import com.huchongxern.project_organiser.model.Lesson;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/tutorials")
@@ -57,5 +58,40 @@ public class TutorialController {
     public ResponseEntity<Tutorial> deleteTutorial(@PathVariable ObjectId tutorialId) {
         tutorialService.deleteTutorial(tutorialId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/updateTutorial/any/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorial(@PathVariable ObjectId tutorialId,
+                                                   @RequestBody Map<String, Object> updates) {
+        try {
+            return new ResponseEntity<>(tutorialService.patchTutorial(tutorialId, updates), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (RuntimeException e) {
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/updateTutorial/name/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorialName(@PathVariable ObjectId tutorialId, @RequestParam String name) {
+        return new ResponseEntity<>(tutorialService.updateTutorialName(tutorialId, name), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateTutorial/tutorialUrl/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorialTutorialUrl(@PathVariable ObjectId tutorialId,
+                                                             @RequestParam String tutorialUrl) {
+        return new ResponseEntity<>(tutorialService.updateTutorialTutorialUrl(tutorialId, tutorialUrl), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateTutorial/isDone/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorialIsDone(@PathVariable ObjectId tutorialId,
+                                                         @RequestParam boolean isDone) {
+        return new ResponseEntity<>(tutorialService.updateTutorialIsDone(tutorialId, isDone), HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateTutorial/category/{tutorialId}")
+    public ResponseEntity<Tutorial> updateTutorialCategory(@PathVariable ObjectId tutorialId,
+                                                           @RequestParam String category) {
+        return new ResponseEntity<>(tutorialService.updateTutorialCategory(tutorialId, category), HttpStatus.OK);
     }
 }

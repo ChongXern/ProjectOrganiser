@@ -10,7 +10,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LessonService {
@@ -66,5 +68,46 @@ public class LessonService {
             throw new RuntimeException("Lesson not found with ID: " + lessonId);
         }
         lessonRepository.deleteById(lessonId);
+    }
+
+    public Lesson patchLesson(ObjectId id, Map<String, Object> updates) {
+        Lesson lesson = fetchLessonOrThrow(id);
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String field = entry.getKey();
+            Object value = entry.getValue();
+
+            switch (field){
+            case "lessonLearnt":
+                lesson.setLessonLearnt((String) value);
+                break;
+            case "application":
+                lesson.setApplication((String)value);
+                break;
+            case "createDate":
+                lesson.setCreatedDate((Date) value);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid field: " + field);
+            }
+        }
+        return lessonRepository.save(lesson);
+    }
+
+    public Lesson updateLessonLessonLearnt(ObjectId lessonId, String lessonLearnt) {
+        Lesson lesson = fetchLessonOrThrow(lessonId);
+        lesson.setLessonLearnt(lessonLearnt);
+        return lessonRepository.save(lesson);
+    }
+
+    public Lesson updateLessonApplication(ObjectId lessonId, String application) {
+        Lesson lesson = fetchLessonOrThrow(lessonId);
+        lesson.setApplication(application);
+        return lessonRepository.save(lesson);
+    }
+
+    public Lesson updateLessonCreatedDate(ObjectId lessonId, Date createdDate) {
+        Lesson lesson = fetchLessonOrThrow(lessonId);
+        lesson.setCreatedDate(createdDate);
+        return lessonRepository.save(lesson);
     }
 }

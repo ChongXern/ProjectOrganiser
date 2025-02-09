@@ -1,13 +1,9 @@
 package com.huchongxern.project_organiser.controller;
 
-import com.huchongxern.project_organiser.model.Lesson;
 import com.huchongxern.project_organiser.model.Project;
 import com.huchongxern.project_organiser.service.ProjectService;
-import com.huchongxern.project_organiser.service.TutorialService;
-import com.huchongxern.project_organiser.service.TodoService;
 import com.huchongxern.project_organiser.model.Tutorial;
 import com.huchongxern.project_organiser.utils.Util;
-import org.apache.coyote.Response;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -69,12 +64,12 @@ public class ProjectController {
         //return new ResponseEntity<List<Project>>(projectService.allProjects(), HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable ObjectId id){
         return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/{repoName}")
+    @GetMapping("/repo/{repoName}") // might have to consider different users might have same repo names
     public ResponseEntity<Optional<Project>> getProjectByRepoName(@PathVariable String repoName) {
         String fullGithubUrl = findGithubUrlFromRepoName(repoName);
         Util.terminal("ls");
@@ -95,7 +90,7 @@ public class ProjectController {
         return new ResponseEntity<>(sortedProjects, HttpStatus.OK);
     }
 
-    @GetMapping("/status?={status}")
+    @GetMapping("/status")
     public ResponseEntity<List<Project>> getProjectsByStatus(@PathVariable String status) {
         List<Project> projects = projectService.getProjectsByStatus(status);
         return new ResponseEntity<>(projects, HttpStatus.OK);
@@ -139,6 +134,12 @@ public class ProjectController {
     @PatchMapping("/updateProject/any/{projectId}") // remember to document key and val formats
     public ResponseEntity<Project> updateProject(@PathVariable ObjectId projectId,
                                                  @RequestBody Map<String, Object> updates){
-        return new ResponseEntity<>(projectService.patchProject(projectId, updates), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(projectService.patchProject(projectId, updates), HttpStatus.OK);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
