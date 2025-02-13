@@ -1,13 +1,9 @@
 package com.huchongxern.project_organiser.utils;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Util {
     public static void terminal(String command){

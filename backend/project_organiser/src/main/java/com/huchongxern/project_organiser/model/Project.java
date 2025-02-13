@@ -24,7 +24,8 @@ public class Project {
     @Id
     private ObjectId _id;
     private String name;
-    private Date start_time;
+    @Field("start_time")
+    private Date startTime;
     private List<String> categories;
     @Field("github_url")
     private String githubUrl;
@@ -46,8 +47,8 @@ public class Project {
         this.categories = new ArrayList<>();
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
-        this.start_time = Util.getCurrDate();
-        this.lastUpdated = this.start_time;
+        this.startTime = Util.getCurrDate();
+        this.lastUpdated = this.startTime;
         this.status = "NOT_STARTED";
     }*/
 
@@ -59,8 +60,8 @@ public class Project {
         this.githubLastCommit = githubLastCommit;
 
         LocalDate today = LocalDate.now();
-        this.start_time = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        this.lastUpdated = this.start_time;
+        this.startTime = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.lastUpdated = this.startTime;
         this.status = "NOT_STARTED";
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();

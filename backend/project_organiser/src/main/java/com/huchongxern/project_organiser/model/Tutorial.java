@@ -58,10 +58,4 @@ public class Tutorial {
         this.isDone = false;
         setDefaultDate();
     }
-
-    /*public Tutorial(){
-        this._id = Util.generateId();
-        this.name = "";
-        this.
-    }*/
 }
