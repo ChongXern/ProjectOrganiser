@@ -79,7 +79,7 @@ public class ProjectService {
 
         // set new attributes one by one
         existingProject.setName(newProject.getName());
-        existingProject.setStart_time(newProject.getStart_time());
+        existingProject.setStartTime(newProject.getStartTime());
         existingProject.setCategories(newProject.getCategories());
         existingProject.setGithubUrl(newProject.getGithubUrl());
         existingProject.setGithubLastCommit(newProject.getGithubLastCommit());
