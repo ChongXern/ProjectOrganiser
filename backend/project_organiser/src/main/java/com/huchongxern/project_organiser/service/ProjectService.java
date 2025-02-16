@@ -24,10 +24,6 @@ public class ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
-    @Autowired
-    private TodoService todoService;
-    @Autowired
-    private TutorialService tutorialService;
 
     private Project fetchProjectOrThrow(ObjectId id) {
         return projectRepository.findById(id)
@@ -175,5 +171,14 @@ public class ProjectService {
         Query query = new Query();
         query.addCriteria(Criteria.where("github_url").is(githubUrl).and("tutorials").is(tutorialId));
         return mongoTemplate.exists(query, Project.class);
+    }
+
+    public Project getProjectByGithubUsernameAndId(String githubUsername, ObjectId id) {
+        // look for the project by id first
+        Project project = getProjectById(id);
+        if (project.getGithubUsername().equals(githubUsername)) {
+            return project;
+        }
+        throw new RuntimeException("Access denied. Github username " + githubUsername + " does not match.");
     }
 }

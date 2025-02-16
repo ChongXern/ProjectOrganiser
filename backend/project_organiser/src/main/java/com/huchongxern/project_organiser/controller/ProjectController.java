@@ -34,8 +34,8 @@ public class ProjectController {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    private String findGithubUrlFromRepoNameAndGithubUser(String repoName, String githubUser) {
-        return "https://github.com/" + githubUser + "/" + repoName;
+    private String findGithubUrlFromGithubUsernameAndRepoName(String repoName, String githubUsername) {
+        return "https://github.com/" + githubUsername + "/" + repoName;
     }
 
     // method used for another method which isn't used
@@ -50,7 +50,10 @@ public class ProjectController {
                 }
             }
         }
-        throw new RuntimeException("Unable to find project with name " + repoName);
+        if (projects.isEmpty()) {
+            throw new RuntimeException("Unable to find project with name " + repoName);
+        }
+        throw new RuntimeException("Access denied. Unable to access project with name " + repoName);
     }
 
     private void validateTutorialBelongsToProject(String repoName, ObjectId tutorialId) {
@@ -69,25 +72,26 @@ public class ProjectController {
         //return new ResponseEntity<List<Project>>(projectService.allProjects(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable ObjectId id){
-        return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
+    @GetMapping("/id/{githubUsername}/{id}")
+    public ResponseEntity<Project> getProjectByGithubUsernameAndId(@PathVariable String githubUsername,
+                                                               @PathVariable ObjectId id){
+        return new ResponseEntity<>(projectService.getProjectByGithubUsernameAndId(githubUsername, id), HttpStatus.OK);
     }
 
-    @GetMapping("/repo/{githubUser}/{repoName}") // might have to consider different users might have same repo names
-    public ResponseEntity<Optional<Project>> getProjectByRepoName(@PathVariable String repoName,
-                                                                  @PathVariable String githubUser) {
-        String fullGithubUrl = findGithubUrlFromRepoNameAndGithubUser(repoName, githubUser);
+    @GetMapping("/repo/{githubUsername}/{repoName}") // might have to consider different users might have same repo names
+    public ResponseEntity<Optional<Project>> getProjectByGithubUsernameAndRepoName(@PathVariable String repoName,
+                                                                  @PathVariable String githubUsername) {
+        String fullGithubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
         Util.terminal("ls");
         return new ResponseEntity<>(projectService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
         //String fullGithubUrl2 = "https://github.com/ChongXern/" + repoName; // adjust to consider other usernames
         //return new ResponseEntity<>(tutorialService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
     }
 
-    @GetMapping("/{githubUser}/{repoName}/tutorials")
+    @GetMapping("/{githubUsername}/{repoName}/tutorials")
     public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String repoName,
-                                                       @PathVariable String  githubUser) {
-        String githubUrl = findGithubUrlFromRepoNameAndGithubUser(repoName, githubUser);
+                                                       @PathVariable String  githubUsername) {
+        String githubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
         return new ResponseEntity<>(projectService.getTutorialsForProject(githubUrl), HttpStatus.OK);
     }
 
