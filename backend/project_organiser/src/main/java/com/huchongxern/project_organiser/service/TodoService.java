@@ -17,11 +17,6 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    private Todo fetchTodoOrThrow(ObjectId id) {
-        return todoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Todo item not found with ID: " + id));
-    }
-
     public Todo createTodo(Todo todo) {
         return todoRepository.save(todo);
     }
@@ -69,7 +64,7 @@ public class TodoService {
     }
 
     public Todo patchTodo(ObjectId id, Map<String, Object> updates) {
-        Todo existingTodo = fetchTodoOrThrow(id);
+        Todo existingTodo = getTodoById(id);
 
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String field = entry.getKey();
@@ -102,37 +97,37 @@ public class TodoService {
     }
 
     public Todo updateTodoDesc(ObjectId todoId, String desc) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setDesc(desc);
         return todoRepository.save(todo);
     }
 
     public Todo updateTodoCreateDate(ObjectId todoId, Date createdDate) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setCreatedDate(createdDate);
         return todoRepository.save(todo);
     }
 
     public Todo updateTodoStartTime(ObjectId todoId, Date startTime) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setStartTime(startTime);
         return todoRepository.save(todo);
     }
 
     public Todo updateTodoDeadline(ObjectId todoId, Date deadline) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setDeadline(deadline);
         return todoRepository.save(todo);
     }
 
     public Todo updateTodoIsDone(ObjectId todoId, boolean isDone) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setDone(isDone);
         return todoRepository.save(todo);
     }
 
     public Todo updateTodoPriority(ObjectId todoId, int priority) {
-        Todo todo = fetchTodoOrThrow(todoId);
+        Todo todo = getTodoById(todoId);
         todo.setPriority(priority);
         return todoRepository.save(todo);
     }

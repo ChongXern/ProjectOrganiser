@@ -78,7 +78,7 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.getProjectByGithubUsernameAndId(githubUsername, id), HttpStatus.OK);
     }
 
-    @GetMapping("/repo/{githubUsername}/{repoName}") // might have to consider different users might have same repo names
+    @GetMapping("/repo/{githubUsername}/{repoName}") // might have to consider diff users can have same repo names
     public ResponseEntity<Optional<Project>> getProjectByGithubUsernameAndRepoName(@PathVariable String repoName,
                                                                   @PathVariable String githubUsername) {
         String fullGithubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
@@ -88,7 +88,7 @@ public class ProjectController {
         //return new ResponseEntity<>(tutorialService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
     }
 
-    @GetMapping("/{githubUsername}/{repoName}/tutorials")
+    @GetMapping("/repo/{githubUsername}/{repoName}/tutorials")
     public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String repoName,
                                                        @PathVariable String  githubUsername) {
         String githubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
@@ -101,7 +101,7 @@ public class ProjectController {
         return new ResponseEntity<>(sortedProjects, HttpStatus.OK);
     }
 
-    @GetMapping("/status")
+    @GetMapping("/status/{status}")
     public ResponseEntity<List<Project>> getProjectsByStatus(@PathVariable String status) {
         List<Project> projects = projectService.getProjectsByStatus(status);
         return new ResponseEntity<>(projects, HttpStatus.OK);

@@ -49,7 +49,7 @@ public class LessonService {
     }
 
     public Lesson updateLesson(ObjectId lessonId, Lesson newLesson) {
-        Lesson existingLesson = fetchLessonOrThrow(lessonId);
+        Lesson existingLesson = getLessonById(lessonId);
 
         existingLesson.setLessonLearnt(newLesson.getLessonLearnt());
         existingLesson.setCreatedDate(newLesson.getCreatedDate());
@@ -58,7 +58,7 @@ public class LessonService {
         return lessonRepository.save(existingLesson);
     }
 
-    private Lesson fetchLessonOrThrow(ObjectId id) {
+    private Lesson getLessonById(ObjectId id) {
         return lessonRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Lesson not found with ID: " + id));
     }
@@ -71,7 +71,7 @@ public class LessonService {
     }
 
     public Lesson patchLesson(ObjectId id, Map<String, Object> updates) {
-        Lesson lesson = fetchLessonOrThrow(id);
+        Lesson lesson = getLessonById(id);
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String field = entry.getKey();
             Object value = entry.getValue();
@@ -94,19 +94,19 @@ public class LessonService {
     }
 
     public Lesson updateLessonLessonLearnt(ObjectId lessonId, String lessonLearnt) {
-        Lesson lesson = fetchLessonOrThrow(lessonId);
+        Lesson lesson = getLessonById(lessonId);
         lesson.setLessonLearnt(lessonLearnt);
         return lessonRepository.save(lesson);
     }
 
     public Lesson updateLessonApplication(ObjectId lessonId, String application) {
-        Lesson lesson = fetchLessonOrThrow(lessonId);
+        Lesson lesson = getLessonById(lessonId);
         lesson.setApplication(application);
         return lessonRepository.save(lesson);
     }
 
     public Lesson updateLessonCreatedDate(ObjectId lessonId, Date createdDate) {
-        Lesson lesson = fetchLessonOrThrow(lessonId);
+        Lesson lesson = getLessonById(lessonId);
         lesson.setCreatedDate(createdDate);
         return lessonRepository.save(lesson);
     }

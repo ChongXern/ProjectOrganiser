@@ -25,11 +25,6 @@ public class ProjectService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    private Project fetchProjectOrThrow(ObjectId id) {
-        return projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found with ID: " + id));
-    }
-
     public Project createProject(Project project) {
         return projectRepository.save(project);
     }
@@ -71,7 +66,7 @@ public class ProjectService {
     }
 
     public Project updateProject(ObjectId id, Project newProject) {
-        Project existingProject = fetchProjectOrThrow(id);
+        Project existingProject = getProjectById(id);
 
         // set new attributes one by one
         existingProject.setName(newProject.getName());
@@ -96,7 +91,7 @@ public class ProjectService {
 
     @SuppressWarnings("unchecked")
     public Project patchProject(ObjectId projectId, Map<String, Object> updates) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
 
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String field = entry.getKey();
@@ -131,38 +126,38 @@ public class ProjectService {
     }
 
     public Project updateProjectName(ObjectId projectId, String name) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
 
         project.setName(name);
         return projectRepository.save(project);
     }
 
     public Project updateProjectGithubLastCommit(ObjectId projectId, String github_last_commit) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
         project.setGithubLastCommit(github_last_commit);
         return projectRepository.save(project);
     }
 
     public Project updateProjectStatus(ObjectId projectId, String status) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
         project.setStatus(status);
         return projectRepository.save(project);
     }
 
     public Project updateProjectLastUpdated(ObjectId projectId) { // assume changing last updated to now
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
         project.setLastUpdated(getCurrDate());
         return projectRepository.save(project);
     }
 
     public Project updateProjectTodos(ObjectId projectId, List<Todo> todos) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
         project.setTodos(todos);
         return projectRepository.save(project);
     }
 
     public Project updateProjectTutorials(ObjectId projectId, List<Tutorial> tutorials) {
-        Project project = fetchProjectOrThrow(projectId);
+        Project project = getProjectById(projectId);
         project.setTutorials(tutorials);
         return projectRepository.save(project);
     }
