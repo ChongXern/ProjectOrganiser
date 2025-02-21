@@ -34,7 +34,7 @@ public class ProjectController {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    private String findGithubUrlFromGithubUsernameAndRepoName(String repoName, String githubUsername) {
+    private String findGithubUrlFromGithubUsernameAndRepoName(String githubUsername, String repoName) {
         return "https://github.com/" + githubUsername + "/" + repoName;
     }
 
@@ -79,9 +79,9 @@ public class ProjectController {
     }
 
     @GetMapping("/repo/{githubUsername}/{repoName}") // might have to consider diff users can have same repo names
-    public ResponseEntity<Optional<Project>> getProjectByGithubUsernameAndRepoName(@PathVariable String repoName,
-                                                                  @PathVariable String githubUsername) {
-        String fullGithubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
+    public ResponseEntity<Optional<Project>> getProjectByGithubUsernameAndRepoName(@PathVariable String githubUsername,
+                                                                  @PathVariable String repoName) {
+        String fullGithubUrl = findGithubUrlFromGithubUsernameAndRepoName(githubUsername, repoName);
         Util.terminal("ls");
         return new ResponseEntity<>(projectService.getProjectByGithubUrlName(fullGithubUrl), HttpStatus.OK);
         //String fullGithubUrl2 = "https://github.com/ChongXern/" + repoName; // adjust to consider other usernames
@@ -89,13 +89,13 @@ public class ProjectController {
     }
 
     @GetMapping("/repo/{githubUsername}/{repoName}/tutorials")
-    public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String repoName,
-                                                       @PathVariable String  githubUsername) {
-        String githubUrl = findGithubUrlFromGithubUsernameAndRepoName(repoName, githubUsername);
+    public ResponseEntity<List<Tutorial>> getTutorials(@PathVariable String githubUsername,
+                                                       @PathVariable String  repoName) {
+        String githubUrl = findGithubUrlFromGithubUsernameAndRepoName(githubUsername, repoName);
         return new ResponseEntity<>(projectService.getTutorialsForProject(githubUrl), HttpStatus.OK);
     }
 
-    @GetMapping("SortedName")
+    @GetMapping("sortByName")
     public ResponseEntity<List<Project>> getAllProjectsSortedByName() {
         List<Project> sortedProjects = projectService.getAllProjectsSortedByName();
         return new ResponseEntity<>(sortedProjects, HttpStatus.OK);
