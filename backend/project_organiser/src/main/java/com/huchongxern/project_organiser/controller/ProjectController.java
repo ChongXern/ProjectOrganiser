@@ -142,6 +142,23 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.updateProjectLastUpdated(projectId), HttpStatus.OK);
     }
 
+    /**
+     * Partially updates project with specified fields.
+     *
+     * <h3>Example Usage:</h3>
+     * <pre>
+     * updateProject("605c72b8f1d5a2e0b8b5b7c9", { "name": "Updated Name", "status": "In Progress" })
+     *     .then(response => console.log("Project updated:", response.data))
+     *     .catch(error => console.error("Update failed:", error));
+     * </pre>
+     *
+     * @param projectId : Map containing fields and their new values
+     * @param updates : The unique identifier of project to update
+     * @throws IllegalArgumentException if update request has invalid values
+     * @throws RuntimeException if unable to find project with the projectId
+     *
+     * @return {@link ResponseEntity} containing the updated {@link Project}, or an error status
+     */
     @PatchMapping("/updateProject/any/{projectId}") // remember to document key and val formats
     public ResponseEntity<Project> updateProject(@PathVariable ObjectId projectId,
                                                  @RequestBody Map<String, Object> updates){
