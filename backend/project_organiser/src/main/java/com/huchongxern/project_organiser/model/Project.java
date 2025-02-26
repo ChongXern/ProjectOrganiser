@@ -15,6 +15,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 @Document(collection = "projects")
 @Data //Takes care of getters, setters and to string
@@ -22,6 +24,7 @@ import java.util.List;
 @NoArgsConstructor //creates constructor with no args
 public class Project {
     @Id
+    @JsonSerialize(using = ToStringSerializer.class) // forces json serialisation as string
     private ObjectId _id;
     private String name;
     @Field("start_time")
