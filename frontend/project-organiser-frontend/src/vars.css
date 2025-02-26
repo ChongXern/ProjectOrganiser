@@ -1,0 +1,10 @@
+:root {
+    --color-text: white;
+    --color-primary: cornflowerblue;
+    --color-secondary: rgb(57, 57, 177);
+    --color-dark: #091f3d;
+    --color-bg: #031329;
+
+    /* fonts variables */
+    --font-judson: "Calibri";
+}

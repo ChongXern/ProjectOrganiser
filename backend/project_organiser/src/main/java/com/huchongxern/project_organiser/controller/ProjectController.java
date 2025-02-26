@@ -23,9 +23,11 @@ Resources operations corresponding to CRUD:
 4. PATCH to partially update resource
 5. DELETE to delete resource from db via id
  */
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/api/v1/projects")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
