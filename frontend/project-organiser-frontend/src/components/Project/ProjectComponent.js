@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectService from '../api/service/ProjectService';
+import ProjectService from '../../api/service/projectService';
 import moment from 'moment';
 
 class ProjectComponent extends React.Component {
