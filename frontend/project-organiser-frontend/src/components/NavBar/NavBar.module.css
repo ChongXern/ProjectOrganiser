@@ -1,6 +1,6 @@
 @import '../../vars.css';
 
-.NavBar {
+.navBar {
     height: 10%;
     padding-top: 5px;
     margin: 0 10px;
@@ -9,4 +9,60 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.title a {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    padding-left: 0.5em;
+}
+
+.title:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.rightItems {
+    display: flex;
+    height: 90%;
+    padding: 10px;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.searchBar {
+    display: flex;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.searchBar input {
+    border-radius: 40px 0 0 40px;
+    padding-left: 10px;
+    width: 400px;
+    border-color: black;
+}
+
+.searchBar button {
+    border-radius: 0 40px 40px 0;
+    background-color: transparent;
+    width: 50px;
+    border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBar button img {
+    height: 80%;
+}
+
+.profile img {
+    height: 40px;
+    border-radius: 40px;
 }
