@@ -1,0 +1,12 @@
+@import '../../vars.css';
+
+.NavBar {
+    height: 10%;
+    padding-top: 5px;
+    margin: 0 10px;
+    position: relative;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
