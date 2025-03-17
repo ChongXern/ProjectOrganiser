@@ -15,10 +15,10 @@ export const NavBar = () => {
                     <img src={getImageUrl('navBar/searchIcon.png')} alt="Search Icon" />
                 </button>
             </div>
-            <div className={styles.profile}>
+            <button className={styles.profile}>
                 <img src={getImageUrl('navBar/profileImages/default_profile_3.png')} 
                 alt="Profile Image" className={styles.profileImage}/>
-            </div>
+            </button>
         </div>
     </nav>
 };

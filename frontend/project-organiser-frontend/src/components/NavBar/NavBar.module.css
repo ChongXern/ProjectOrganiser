@@ -5,7 +5,7 @@
     padding-top: 5px;
     margin: 0 10px;
     position: relative;
-    background-color: lightgrey;
+    background-color: rgb(191, 239, 191);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +19,7 @@
     font-weight: bold;
     text-decoration: none;
     color: black;
-    padding-left: 0.5em;
+    padding: 0.5em;
 }
 
 .title:hover {
@@ -44,7 +44,8 @@
 .searchBar input {
     border-radius: 40px 0 0 40px;
     padding-left: 10px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     border-color: black;
 }
 
@@ -58,11 +59,26 @@
     align-items: center;
 }
 
+.searchBar button :hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
 .searchBar button img {
     height: 80%;
+}
+
+.profile {
+    border: none;
+    background-color: transparent;
 }
 
 .profile img {
     height: 40px;
     border-radius: 40px;
+}
+
+.profile :hover {
+    transform: scale(1.1);
+    transition: 0.2s;
 }
