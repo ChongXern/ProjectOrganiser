@@ -1,4 +1,39 @@
-@import "../vars.css";
+@import "../../vars.css";
+
+/* .mainPage {
+    background-image: linear-gradient(to right, white, grey);
+} */
+
+.mainPage{
+    padding: 20px;
+}
+
+.topBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(191, 239, 191);
+    height: 40px;
+    border-radius: 15px;
+}
+
+.topBarLeftItems a img {
+    height: 2em;
+    margin: 10% 10% 10% 1em;
+}
+
+.topBarRightItems ul img {
+    height: 2em;
+    margin: 10% 1em 10% 10%;
+}
+
+.topBarTitle{
+    height: 80%;
+    padding-bottom: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: bolder;
+}
 
 h1.text-center {
     text-align: center;
@@ -10,14 +45,14 @@ table.table {
     width: 80%;
     margin: 30px auto;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table.table-striped thead {
     background-color: #007bff;
-    color: #fff;
+    color: transparent;
 }
 
 table.table-striped th,
