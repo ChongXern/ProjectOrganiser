@@ -176,4 +176,12 @@ public class ProjectService {
         }
         throw new RuntimeException("Access denied. Github username " + githubUsername + " does not match.");
     }
+
+    public Project updateProjectImage(ObjectId projectId, String image) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+        project.setImage(image);
+        projectRepository.save(project);
+        return project;
+    }
 }

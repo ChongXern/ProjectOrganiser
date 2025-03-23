@@ -43,6 +43,7 @@ public class Project {
     private List<Todo> todos;
     @DocumentReference
     private List<Tutorial> tutorials;
+    private String image;
 
     // no args constructor considering string status
     /*public Project(){
@@ -55,7 +56,8 @@ public class Project {
         this.status = "NOT_STARTED";
     }*/
 
-    public Project(ObjectId _id, String name, String githubUsername, String githubUrl, String githubLastCommit) {
+    public Project(ObjectId _id, String name, String githubUsername, String githubUrl,
+                   String githubLastCommit) {
         this._id = _id;
         this.name = name;
         this.githubUrl = githubUrl;
@@ -69,5 +71,6 @@ public class Project {
         this.todos = new ArrayList<>();
         this.tutorials = new ArrayList<>();
         this.categories = new ArrayList<>();
+        this.image = "";
     }
 }

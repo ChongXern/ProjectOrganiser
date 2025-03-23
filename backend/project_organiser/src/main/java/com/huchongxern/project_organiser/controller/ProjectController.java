@@ -144,6 +144,12 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.updateProjectLastUpdated(projectId), HttpStatus.OK);
     }
 
+    @PatchMapping("/updateProject/image/{projectId}")
+    public ResponseEntity<Project> updateProjectImage(@PathVariable ObjectId projectId, @RequestParam String image) {
+        Project updatedProject = projectService.updateProjectImage(projectId, image);
+        return ResponseEntity.ok(updatedProject);
+    }
+
     /**
      * Partially updates project with specified fields.
      *
