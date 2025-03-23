@@ -6,7 +6,9 @@ import {getImageUrl, isImageValid} from "../../utils";
 export const NavBar = () => {
     return <nav className={styles.navBar}>
         <div className={styles.title}>
-            <a href="/"> ProjOrg </a>
+            <a href="/"> 
+                <img src={getImageUrl('mainLogo.png')} alt="Proj Org Logo" />
+            </a>
         </div>
         <div className={styles.rightItems}>
             <div className={styles.searchBar}>
