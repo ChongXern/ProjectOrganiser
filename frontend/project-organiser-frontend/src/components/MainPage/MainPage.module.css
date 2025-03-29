@@ -35,6 +35,92 @@
     font-weight: bolder;
 }
 
+.projectsContainer{
+    border-radius: 20px;
+}
+
+.gridBody {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.gridItem {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 20px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 10px grey;
+    height: fit-content;
+    width: 30vw;
+    gap: 10px;
+}
+
+.gridBody :hover{
+    transform: translateY(-0.5em);
+    transition: 0.2s;
+}
+
+.gridItem :hover {
+    transform: none;
+}
+
+.gridTopSegment {
+    display: flex;
+    height: 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gridTopSegment img {
+    height: 2em;
+}
+
+.projectTitle {
+    font-weight: bold;
+    font-size: 110%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.projectImage{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.githubButton{
+    width: 100%;
+    background-color: rgb(43, 172, 43);
+    border-radius: 20px;
+}
+
+.githubButton {
+    text-decoration: none;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.githubButton :hover{
+    color: black;
+}
+
+.projectCategories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.projectCategory {
+    background-color: rgb(191, 239, 191);
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 3px;
+}
+
 h1.text-center {
     text-align: center;
     margin-top: 30px;
